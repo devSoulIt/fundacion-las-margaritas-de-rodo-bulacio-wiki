@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mkdir -p \"C:\\\\Users\\\\Lautaro\\\\Documents\\\\Programacion\\\\devsoul\\\\rodo-bulacio-wiki\\\\app\\\\admin\\\\paginas\\\\[id]\\\\editar\")",
+      "Bash(mkdir -p \"C:\\\\Users\\\\Lautaro\\\\Documents\\\\Programacion\\\\devsoul\\\\rodo-bulacio-wiki\\\\app\\\\admin\\\\artistas\\\\[id]\\\\editar\")",
+      "Bash(mkdir -p \"C:\\\\Users\\\\Lautaro\\\\Documents\\\\Programacion\\\\devsoul\\\\rodo-bulacio-wiki\\\\app\\\\wiki\\\\[slug]\")",
+      "Bash(mkdir -p \"C:\\\\Users\\\\Lautaro\\\\Documents\\\\Programacion\\\\devsoul\\\\rodo-bulacio-wiki\\\\app\\\\galeria\\\\[slug]\")",
+      "Bash(npx tsc *)",
+      "Bash(npm install *)",
+      "Bash(npx next *)",
+      "Bash(mkdir -p \"app/admin/\\(dashboard\\)/paginas/[id]/editar\")",
+      "Bash(mkdir -p \"app/admin/\\(dashboard\\)/artistas/[id]/editar\")",
+      "Bash(Copy-Item \"app/admin/layout.tsx\" \"app/admin/\\(dashboard\\)/layout.tsx\")",
+      "Bash(Remove-Item \"app/admin/layout.tsx\")"
+    ]
+  }
+}
