@@ -15,17 +15,42 @@ export default function SearchBar({ defaultValue = '' }: { defaultValue?: string
   }
 
   return (
-    <form onSubmit={handleSubmit} className="flex gap-2">
+    <form onSubmit={handleSubmit} style={{ display: 'flex', gap: '0' }}>
       <input
         ref={inputRef}
         type="search"
         defaultValue={defaultValue}
         placeholder="Buscar páginas y artistas…"
-        className="flex-1 border border-zinc-300 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-zinc-900"
+        style={{
+          flex: 1,
+          background: 'transparent',
+          border: 'none',
+          borderBottom: '1px solid rgba(255,255,255,0.2)',
+          color: 'var(--white)',
+          fontSize: '0.95rem',
+          padding: '10px 0',
+          outline: 'none',
+          letterSpacing: '0.02em',
+        }}
       />
       <button
         type="submit"
-        className="bg-zinc-900 text-white rounded-lg px-4 py-2.5 text-sm font-medium hover:bg-zinc-700 transition-colors"
+        style={{
+          background: 'var(--accent)',
+          color: 'var(--white)',
+          border: 'none',
+          cursor: 'pointer',
+          padding: '10px 24px',
+          fontSize: '0.68rem',
+          letterSpacing: '0.12em',
+          textTransform: 'uppercase',
+          fontWeight: 500,
+          transition: 'background 0.2s',
+          flexShrink: 0,
+          marginLeft: '1rem',
+        }}
+        onMouseEnter={e => (e.currentTarget.style.background = 'var(--accent-dark)')}
+        onMouseLeave={e => (e.currentTarget.style.background = 'var(--accent)')}
       >
         Buscar
       </button>

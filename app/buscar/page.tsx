@@ -36,66 +36,172 @@ export default async function BuscarPage(props: PageProps<'/buscar'>) {
   const total = (paginas?.length ?? 0) + (artistas?.length ?? 0)
 
   return (
-    <div className="max-w-3xl mx-auto px-4 py-12">
-      <h1 className="text-2xl font-semibold text-zinc-900 mb-6">Buscar</h1>
+    <div>
+      {/* Header */}
+      <section
+        style={{
+          background: 'var(--bg-dark)',
+          padding: '5rem 1.5rem 4rem',
+          borderBottom: '1px solid var(--border-dark)',
+        }}
+      >
+        <div style={{ maxWidth: '680px', margin: '0 auto' }}>
+          <h1
+            style={{
+              fontFamily: 'var(--font-display), serif',
+              fontSize: 'clamp(2rem, 5vw, 3.5rem)',
+              fontWeight: 300,
+              fontStyle: 'italic',
+              color: 'var(--white)',
+              letterSpacing: '-0.02em',
+              marginBottom: '2rem',
+            }}
+          >
+            Buscar en el archivo
+          </h1>
+          <SearchBar defaultValue={query} />
+        </div>
+      </section>
 
-      <SearchBar defaultValue={query} />
+      {/* Results */}
+      <section style={{ padding: '4rem 1.5rem' }}>
+        <div style={{ maxWidth: '680px', margin: '0 auto' }}>
+          {query && (
+            <>
+              <p
+                style={{
+                  fontSize: '0.72rem',
+                  letterSpacing: '0.1em',
+                  textTransform: 'uppercase',
+                  color: total === 0 ? 'var(--text-muted)' : 'var(--accent)',
+                  marginBottom: '2.5rem',
+                }}
+              >
+                {total === 0
+                  ? `Sin resultados para "${query}"`
+                  : `${total} resultado${total !== 1 ? 's' : ''} para "${query}"`}
+              </p>
 
-      {query && (
-        <div className="mt-8">
-          <p className="text-sm text-zinc-400 mb-6">
-            {total === 0
-              ? `Sin resultados para "${query}"`
-              : `${total} resultado${total !== 1 ? 's' : ''} para "${query}"`}
-          </p>
+              {paginas && paginas.length > 0 && (
+                <section style={{ marginBottom: '3rem' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1.5rem' }}>
+                    <span style={{ fontSize: '0.62rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--text-faint)' }}>
+                      Páginas
+                    </span>
+                    <div style={{ flex: 1, height: '1px', background: 'var(--border)' }} />
+                  </div>
+                  <div style={{ display: 'flex', flexDirection: 'column' }}>
+                    {paginas.map((p) => (
+                      <Link
+                        key={p.slug}
+                        href={`/wiki/${p.slug}`}
+                        className="hover-indent"
+                        style={{
+                          display: 'flex',
+                          flexDirection: 'column',
+                          padding: '1rem 0',
+                          borderBottom: '1px solid var(--border)',
+                          textDecoration: 'none',
+                        }}
+                      >
+                        <span
+                          style={{
+                            fontFamily: 'var(--font-display), serif',
+                            fontSize: '1.05rem',
+                            color: 'var(--text)',
+                            marginBottom: '0.25rem',
+                          }}
+                        >
+                          {p.titulo}
+                        </span>
+                        {p.resumen && (
+                          <span
+                            style={{
+                              fontSize: '0.8rem',
+                              color: 'var(--text-muted)',
+                              overflow: 'hidden',
+                              display: '-webkit-box',
+                              WebkitLineClamp: 1,
+                              WebkitBoxOrient: 'vertical',
+                            }}
+                          >
+                            {p.resumen}
+                          </span>
+                        )}
+                      </Link>
+                    ))}
+                  </div>
+                </section>
+              )}
 
-          {paginas && paginas.length > 0 && (
-            <section className="mb-8">
-              <h2 className="text-xs font-semibold text-zinc-400 uppercase tracking-wider mb-3">Páginas</h2>
-              <ul className="divide-y divide-zinc-100 border border-zinc-200 rounded-xl overflow-hidden">
-                {paginas.map((p) => (
-                  <li key={p.slug}>
-                    <Link
-                      href={`/wiki/${p.slug}`}
-                      className="flex flex-col px-5 py-4 hover:bg-zinc-50 transition-colors"
-                    >
-                      <span className="text-sm font-medium text-zinc-900">{p.titulo}</span>
-                      {p.resumen && (
-                        <span className="text-xs text-zinc-500 mt-0.5 line-clamp-1">{p.resumen}</span>
-                      )}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </section>
+              {artistas && artistas.length > 0 && (
+                <section>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1.5rem' }}>
+                    <span style={{ fontSize: '0.62rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--text-faint)' }}>
+                      Artistas
+                    </span>
+                    <div style={{ flex: 1, height: '1px', background: 'var(--border)' }} />
+                  </div>
+                  <div style={{ display: 'flex', flexDirection: 'column' }}>
+                    {artistas.map((a) => (
+                      <Link
+                        key={a.slug}
+                        href={`/galeria/${a.slug}`}
+                        className="hover-indent"
+                        style={{
+                          display: 'flex',
+                          flexDirection: 'column',
+                          padding: '1rem 0',
+                          borderBottom: '1px solid var(--border)',
+                          textDecoration: 'none',
+                        }}
+                      >
+                        <span
+                          style={{
+                            fontFamily: 'var(--font-display), serif',
+                            fontSize: '1.05rem',
+                            color: 'var(--text)',
+                            marginBottom: '0.25rem',
+                          }}
+                        >
+                          {a.nombre}
+                        </span>
+                        {a.statement && (
+                          <span
+                            style={{
+                              fontSize: '0.8rem',
+                              color: 'var(--text-muted)',
+                              overflow: 'hidden',
+                              display: '-webkit-box',
+                              WebkitLineClamp: 1,
+                              WebkitBoxOrient: 'vertical',
+                            }}
+                          >
+                            {a.statement}
+                          </span>
+                        )}
+                      </Link>
+                    ))}
+                  </div>
+                </section>
+              )}
+            </>
           )}
 
-          {artistas && artistas.length > 0 && (
-            <section>
-              <h2 className="text-xs font-semibold text-zinc-400 uppercase tracking-wider mb-3">Artistas</h2>
-              <ul className="divide-y divide-zinc-100 border border-zinc-200 rounded-xl overflow-hidden">
-                {artistas.map((a) => (
-                  <li key={a.slug}>
-                    <Link
-                      href={`/galeria/${a.slug}`}
-                      className="flex flex-col px-5 py-4 hover:bg-zinc-50 transition-colors"
-                    >
-                      <span className="text-sm font-medium text-zinc-900">{a.nombre}</span>
-                      {a.statement && (
-                        <span className="text-xs text-zinc-500 mt-0.5 line-clamp-1">{a.statement}</span>
-                      )}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </section>
+          {!query && (
+            <p
+              style={{
+                fontSize: '0.85rem',
+                color: 'var(--text-muted)',
+                fontStyle: 'italic',
+                fontFamily: 'var(--font-display), serif',
+              }}
+            >
+              Escribí un término para buscar en páginas y artistas.
+            </p>
           )}
         </div>
-      )}
-
-      {!query && (
-        <p className="mt-8 text-sm text-zinc-400">Escribí un término para buscar en páginas y artistas.</p>
-      )}
+      </section>
     </div>
   )
 }

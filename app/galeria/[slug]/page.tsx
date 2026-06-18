@@ -29,44 +29,129 @@ export default async function ArtistaPage(props: PageProps<'/galeria/[slug]'>) {
   if (!artista) notFound()
 
   return (
-    <article className="max-w-3xl mx-auto px-4 py-12">
-      <Link href="/galeria" className="text-sm text-zinc-400 hover:text-zinc-700 transition-colors mb-6 inline-block">
-        ← Galería de artistas
-      </Link>
-
-      <div className="flex flex-col sm:flex-row gap-8 mb-10">
-        {artista.foto && (
-          <div className="relative w-40 h-40 shrink-0 rounded-xl overflow-hidden bg-zinc-100">
-            <Image
-              src={artista.foto}
-              alt={artista.nombre}
-              fill
-              className="object-cover"
-              sizes="160px"
-            />
-          </div>
-        )}
-        <div>
-          <h1 className="text-3xl font-bold text-zinc-900 mb-2">{artista.nombre}</h1>
-          {artista.statement && (
-            <p className="text-zinc-500 italic leading-relaxed">{artista.statement}</p>
-          )}
+    <article>
+      {/* Back link */}
+      <div style={{ background: 'var(--bg-dark)', padding: '1.25rem 1.5rem', borderBottom: '1px solid var(--border-dark)' }}>
+        <div className="max-w-7xl mx-auto">
+          <Link
+            href="/galeria"
+            className="btn-ghost-dark"
+            style={{
+              fontSize: '0.68rem',
+              letterSpacing: '0.14em',
+              textTransform: 'uppercase',
+              color: 'var(--text-faint)',
+              textDecoration: 'none',
+              transition: 'color 0.2s',
+            }}
+          >
+            ← Galería de artistas
+          </Link>
         </div>
       </div>
 
-      {artista.biografia && (
-        <section className="mb-10">
-          <h2 className="text-lg font-semibold text-zinc-900 mb-4">Biografía</h2>
-          <WikiPage contenido={artista.biografia} />
-        </section>
-      )}
+      {/* Artist hero */}
+      <section style={{ background: 'var(--bg-dark)', padding: '4rem 1.5rem 5rem' }}>
+        <div className="max-w-7xl mx-auto">
+          <div style={{ display: 'flex', flexDirection: 'row', gap: '3rem', alignItems: 'flex-start', flexWrap: 'wrap' }}>
+            {artista.foto && (
+              <div
+                style={{
+                  position: 'relative',
+                  width: '220px',
+                  aspectRatio: '3/4',
+                  flexShrink: 0,
+                  overflow: 'hidden',
+                  background: 'var(--bg-subtle)',
+                }}
+              >
+                <Image
+                  src={artista.foto}
+                  alt={artista.nombre}
+                  fill
+                  className="object-cover"
+                  sizes="220px"
+                />
+              </div>
+            )}
 
-      {artista.trayectoria && (
-        <section>
-          <h2 className="text-lg font-semibold text-zinc-900 mb-4">Trayectoria</h2>
-          <WikiPage contenido={artista.trayectoria} />
-        </section>
-      )}
+            <div style={{ flex: 1, minWidth: '240px', paddingTop: '0.5rem' }}>
+              <div style={{ width: '40px', height: '1px', background: 'var(--accent)', marginBottom: '1.5rem' }} />
+              <h1
+                style={{
+                  fontFamily: 'var(--font-display), serif',
+                  fontSize: 'clamp(2.5rem, 5vw, 4rem)',
+                  fontWeight: 300,
+                  fontStyle: 'italic',
+                  color: 'var(--white)',
+                  letterSpacing: '-0.02em',
+                  lineHeight: 1.1,
+                  marginBottom: '1.5rem',
+                }}
+              >
+                {artista.nombre}
+              </h1>
+              {artista.statement && (
+                <p
+                  style={{
+                    fontSize: '1.05rem',
+                    lineHeight: 1.75,
+                    color: 'var(--text-faint)',
+                    fontStyle: 'italic',
+                    maxWidth: '32rem',
+                    fontFamily: 'var(--font-display), serif',
+                  }}
+                >
+                  {artista.statement}
+                </p>
+              )}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Content */}
+      <div style={{ maxWidth: '820px', margin: '0 auto', padding: '4rem 1.5rem' }}>
+        {artista.biografia && (
+          <section style={{ marginBottom: '4rem' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '2rem' }}>
+              <span
+                style={{
+                  fontSize: '0.65rem',
+                  letterSpacing: '0.2em',
+                  textTransform: 'uppercase',
+                  color: 'var(--accent)',
+                  fontWeight: 500,
+                }}
+              >
+                Biografía
+              </span>
+              <div style={{ flex: 1, height: '1px', background: 'var(--border)' }} />
+            </div>
+            <WikiPage contenido={artista.biografia} />
+          </section>
+        )}
+
+        {artista.trayectoria && (
+          <section>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '2rem' }}>
+              <span
+                style={{
+                  fontSize: '0.65rem',
+                  letterSpacing: '0.2em',
+                  textTransform: 'uppercase',
+                  color: 'var(--accent)',
+                  fontWeight: 500,
+                }}
+              >
+                Trayectoria
+              </span>
+              <div style={{ flex: 1, height: '1px', background: 'var(--border)' }} />
+            </div>
+            <WikiPage contenido={artista.trayectoria} />
+          </section>
+        )}
+      </div>
     </article>
   )
 }

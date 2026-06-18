@@ -2,31 +2,208 @@
 @plugin "@tailwindcss/typography";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bg: #f2ede4;
+  --bg-subtle: #e8e2d6;
+  --bg-dark: #1a1614;
+  --text: #2d2825;
+  --text-muted: #7a6f65;
+  --text-faint: #b0a89e;
+  --accent: #c9954c;
+  --accent-dark: #a67a38;
+  --border: #d4ccc0;
+  --border-dark: #3a3330;
+  --white: #faf8f4;
+
+  --font-display: var(--font-cormorant);
+  --font-body: var(--font-dm-sans);
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist);
-  --font-mono: monospace;
+  --color-background: var(--bg);
+  --color-foreground: var(--text);
+  --font-sans: var(--font-dm-sans);
+  --font-serif: var(--font-cormorant);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body), sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* Estilos del editor TipTap */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.5;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--white);
+}
+
+.font-display {
+  font-family: var(--font-display), Georgia, serif;
+}
+
+/* TipTap Editor */
 .ProseMirror {
   outline: none;
 }
-
 .ProseMirror p.is-editor-empty:first-child::before {
   content: attr(data-placeholder);
   float: left;
-  color: #adb5bd;
+  color: var(--text-faint);
   pointer-events: none;
   height: 0;
 }
+
+/* Wiki content typography */
+.wiki-content {
+  font-family: var(--font-body), sans-serif;
+  color: var(--text);
+  line-height: 1.8;
+}
+.wiki-content h1,
+.wiki-content h2,
+.wiki-content h3,
+.wiki-content h4 {
+  font-family: var(--font-display), Georgia, serif;
+  color: var(--bg-dark);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin-top: 2.5em;
+  margin-bottom: 0.75em;
+}
+.wiki-content h2 {
+  font-size: 1.75rem;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 0.4em;
+}
+.wiki-content h3 {
+  font-size: 1.35rem;
+}
+.wiki-content p {
+  margin-bottom: 1.4em;
+}
+.wiki-content a {
+  color: var(--accent-dark);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.wiki-content blockquote {
+  border-left: 3px solid var(--accent);
+  padding-left: 1.5em;
+  margin: 2em 0;
+  font-family: var(--font-display), Georgia, serif;
+  font-size: 1.2rem;
+  font-style: italic;
+  color: var(--text-muted);
+}
+.wiki-content img {
+  border-radius: 4px;
+  width: 100%;
+  height: auto;
+}
+.wiki-content ul,
+.wiki-content ol {
+  padding-left: 1.5em;
+  margin-bottom: 1.4em;
+}
+.wiki-content li {
+  margin-bottom: 0.4em;
+}
+
+/* Fade-in animation */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-up {
+  animation: fadeUp 0.6s ease forwards;
+}
+.animate-fade-up-delay-1 { animation-delay: 0.1s; opacity: 0; animation-fill-mode: forwards; }
+.animate-fade-up-delay-2 { animation-delay: 0.2s; opacity: 0; animation-fill-mode: forwards; }
+.animate-fade-up-delay-3 { animation-delay: 0.3s; opacity: 0; animation-fill-mode: forwards; }
+.animate-fade-up-delay-4 { animation-delay: 0.4s; opacity: 0; animation-fill-mode: forwards; }
+.animate-fade-up-delay-5 { animation-delay: 0.5s; opacity: 0; animation-fill-mode: forwards; }
+.animate-fade-up-delay-6 { animation-delay: 0.6s; opacity: 0; animation-fill-mode: forwards; }
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.animate-fade-in {
+  animation: fadeIn 0.8s ease forwards;
+}
+
+/* Line decoration */
+.ruled-line {
+  display: block;
+  width: 40px;
+  height: 1px;
+  background: var(--accent);
+  margin-bottom: 1rem;
+}
+
+/* Gallery hover */
+.gallery-card:hover .gallery-overlay {
+  opacity: 1;
+}
+.gallery-overlay {
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+/* Hover utilities for server components */
+.hover-accent { transition: color 0.2s; }
+.hover-accent:hover { color: var(--accent); }
+
+.hover-white { transition: color 0.2s; }
+.hover-white:hover { color: var(--white); }
+
+.hover-bg-subtle { transition: background 0.25s; }
+.hover-bg-subtle:hover { background: var(--bg-subtle); }
+
+.hover-accent-bg { transition: background 0.2s; }
+.hover-accent-bg:hover { background: var(--accent-dark); }
+
+.hover-dark-accent-bg { transition: background 0.2s; }
+.hover-dark-accent-bg:hover { background: var(--accent); }
+
+.hover-border-accent { transition: border-color 0.2s, color 0.2s; }
+.hover-border-accent:hover { border-color: var(--accent); color: var(--accent); }
+
+.hover-indent { transition: padding-left 0.2s; }
+.hover-indent:hover { padding-left: 0.5rem; }
+
+.btn-outline:hover { border-color: var(--text-faint); color: var(--white); }
+.btn-ghost-dark:hover { color: var(--accent); }
+
+.nav-logo:hover { color: var(--accent); }
+
+.search-btn-hover:hover { background: var(--accent-dark) !important; }
+
+.contact-link:hover { color: var(--accent); }
+
+.social-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+.not-found-btn:hover { background: var(--accent); }
+
+.section-link:hover .section-link-arrow { color: var(--accent-dark); }
+
+.image-zoom:hover img { transform: scale(1.05); }

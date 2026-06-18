@@ -17,49 +17,204 @@ export default async function GaleriaPage() {
     .order('nombre')
 
   return (
-    <div className="max-w-6xl mx-auto px-4 py-12">
-      <header className="mb-10">
-        <h1 className="text-3xl font-bold text-zinc-900 mb-2">Galería de Artistas</h1>
-        <p className="text-zinc-500 max-w-xl">
-          Artistas que forman parte de la propuesta expositiva presentada por la Fundación Las Margaritas de Rodolfo Bulacio y la Sala de Arte Contemporáneo Rodolfo Bulacio.
-        </p>
-      </header>
-
-      {artistas?.length === 0 && (
-        <p className="text-zinc-400 text-center py-20">En construcción — próximamente se incorporarán los perfiles de artistas.</p>
-      )}
-
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-        {artistas?.map((a) => (
-          <Link
-            key={a.id}
-            href={`/galeria/${a.slug}`}
-            className="group bg-white border border-zinc-200 rounded-xl overflow-hidden hover:border-zinc-400 hover:shadow-sm transition-all"
+    <div>
+      {/* Header */}
+      <section
+        style={{
+          background: 'var(--bg-dark)',
+          padding: '5rem 1.5rem 4rem',
+          borderBottom: '1px solid var(--border-dark)',
+        }}
+      >
+        <div className="max-w-7xl mx-auto">
+          <p
+            style={{
+              fontSize: '0.68rem',
+              letterSpacing: '0.2em',
+              textTransform: 'uppercase',
+              color: 'var(--accent)',
+              marginBottom: '1rem',
+            }}
           >
-            <div className="relative aspect-square bg-zinc-100">
-              {a.foto ? (
-                <Image
-                  src={a.foto}
-                  alt={a.nombre}
-                  fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-300"
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                />
-              ) : (
-                <div className="w-full h-full flex items-center justify-center text-zinc-300 text-5xl">
-                  🎨
+            Fundación Las Margaritas
+          </p>
+          <h1
+            style={{
+              fontFamily: 'var(--font-display), serif',
+              fontSize: 'clamp(2.5rem, 6vw, 4.5rem)',
+              fontWeight: 300,
+              fontStyle: 'italic',
+              color: 'var(--white)',
+              letterSpacing: '-0.02em',
+              lineHeight: 1.1,
+              marginBottom: '1.5rem',
+            }}
+          >
+            Galería de Artistas
+          </h1>
+          <p
+            style={{
+              maxWidth: '34rem',
+              fontSize: '0.9rem',
+              lineHeight: 1.75,
+              color: 'var(--text-faint)',
+            }}
+          >
+            Artistas que forman parte de la propuesta expositiva presentada por la Fundación Las Margaritas
+            de Rodolfo Bulacio y la Sala de Arte Contemporáneo Rodolfo Bulacio.
+          </p>
+        </div>
+      </section>
+
+      {/* Gallery grid */}
+      <section style={{ padding: '4rem 1.5rem' }}>
+        <div className="max-w-7xl mx-auto">
+          {(!artistas || artistas.length === 0) && (
+            <div
+              style={{
+                padding: '6rem 0',
+                textAlign: 'center',
+                color: 'var(--text-muted)',
+                fontFamily: 'var(--font-display), serif',
+                fontSize: '1.1rem',
+                fontStyle: 'italic',
+              }}
+            >
+              En construcción — próximamente se incorporarán los perfiles de artistas.
+            </div>
+          )}
+
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))',
+              gap: '2px',
+              background: 'var(--border)',
+            }}
+          >
+            {artistas?.map((a) => (
+              <Link
+                key={a.id}
+                href={`/galeria/${a.slug}`}
+                className="gallery-card"
+                style={{
+                  background: 'var(--bg)',
+                  textDecoration: 'none',
+                  display: 'block',
+                  position: 'relative',
+                  overflow: 'hidden',
+                }}
+              >
+                {/* Image */}
+                <div
+                  className="image-zoom"
+                  style={{
+                    position: 'relative',
+                    aspectRatio: '3/4',
+                    background: 'var(--bg-subtle)',
+                    overflow: 'hidden',
+                  }}
+                >
+                  {a.foto ? (
+                    <Image
+                      src={a.foto}
+                      alt={a.nombre}
+                      fill
+                      className="object-cover"
+                      style={{ transition: 'transform 0.6s ease' }}
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    />
+                  ) : (
+                    <div
+                      style={{
+                        width: '100%',
+                        height: '100%',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                      }}
+                    >
+                      <span
+                        style={{
+                          fontFamily: 'var(--font-display), serif',
+                          fontSize: '4rem',
+                          color: 'var(--border)',
+                          fontStyle: 'italic',
+                        }}
+                      >
+                        {a.nombre.charAt(0)}
+                      </span>
+                    </div>
+                  )}
+
+                  {/* Hover overlay */}
+                  <div
+                    className="gallery-overlay"
+                    style={{
+                      position: 'absolute',
+                      inset: 0,
+                      background: 'linear-gradient(to top, rgba(26,22,20,0.85) 0%, transparent 50%)',
+                      display: 'flex',
+                      alignItems: 'flex-end',
+                      padding: '1.5rem',
+                    }}
+                  >
+                    <span
+                      style={{
+                        fontSize: '0.68rem',
+                        letterSpacing: '0.12em',
+                        textTransform: 'uppercase',
+                        color: 'var(--accent)',
+                      }}
+                    >
+                      Ver perfil →
+                    </span>
+                  </div>
                 </div>
-              )}
-            </div>
-            <div className="p-4">
-              <h2 className="font-semibold text-zinc-900">{a.nombre}</h2>
-              {a.statement && (
-                <p className="text-sm text-zinc-500 mt-1 line-clamp-2">{a.statement}</p>
-              )}
-            </div>
-          </Link>
-        ))}
-      </div>
+
+                {/* Info */}
+                <div style={{ padding: '1.25rem 1.25rem 1.5rem' }}>
+                  <div
+                    style={{
+                      width: '24px',
+                      height: '1px',
+                      background: 'var(--accent)',
+                      marginBottom: '0.75rem',
+                    }}
+                  />
+                  <h2
+                    style={{
+                      fontFamily: 'var(--font-display), serif',
+                      fontSize: '1.2rem',
+                      fontWeight: 500,
+                      color: 'var(--text)',
+                      marginBottom: '0.4rem',
+                      letterSpacing: '-0.01em',
+                    }}
+                  >
+                    {a.nombre}
+                  </h2>
+                  {a.statement && (
+                    <p
+                      style={{
+                        fontSize: '0.8rem',
+                        color: 'var(--text-muted)',
+                        lineHeight: 1.6,
+                        display: '-webkit-box',
+                        WebkitLineClamp: 2,
+                        WebkitBoxOrient: 'vertical',
+                        overflow: 'hidden',
+                      }}
+                    >
+                      {a.statement}
+                    </p>
+                  )}
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
     </div>
   )
 }

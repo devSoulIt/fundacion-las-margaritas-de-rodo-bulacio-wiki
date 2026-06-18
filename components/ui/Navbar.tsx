@@ -8,8 +8,8 @@ const NAV_ITEMS = [
   { label: 'Rodolfo Bulacio', href: '/wiki/rodolfo-bulacio' },
   { label: 'Fundación', href: '/wiki/fundacion-las-margaritas' },
   { label: 'Sala de Arte', href: '/wiki/sala-de-arte' },
-  { label: 'Galería de Artistas', href: '/galeria' },
-  { label: 'Archivo y Memoria', href: '/wiki/archivo-y-memoria' },
+  { label: 'Galería', href: '/galeria' },
+  { label: 'Archivo', href: '/wiki/archivo-y-memoria' },
   { label: 'Contacto', href: '/contacto' },
 ]
 
@@ -27,38 +27,70 @@ export default function Navbar() {
     const q = searchRef.current?.value.trim()
     if (!q) return
     setSearchOpen(false)
+    setOpen(false)
     router.push(`/buscar?q=${encodeURIComponent(q)}`)
   }
 
   return (
-    <header className="border-b border-zinc-200 bg-white sticky top-0 z-50">
-      <div className="max-w-6xl mx-auto px-4 flex items-center justify-between h-16 gap-4">
-        <Link href="/" className="font-semibold text-lg tracking-tight text-zinc-900 hover:text-zinc-600 transition-colors shrink-0">
+    <header
+      className="sticky top-0 z-50"
+      style={{ background: 'var(--bg-dark)', borderBottom: '1px solid var(--border-dark)' }}
+    >
+      <div className="max-w-7xl mx-auto px-6 flex items-center justify-between h-16 gap-6">
+        {/* Logo */}
+        <Link
+          href="/"
+          style={{
+            fontFamily: 'var(--font-display), serif',
+            fontSize: '1.25rem',
+            fontStyle: 'italic',
+            fontWeight: 400,
+            color: 'var(--white)',
+            letterSpacing: '0.01em',
+            flexShrink: 0,
+            textDecoration: 'none',
+            transition: 'color 0.2s',
+          }}
+          onMouseEnter={e => (e.currentTarget.style.color = 'var(--accent)')}
+          onMouseLeave={e => (e.currentTarget.style.color = 'var(--white)')}
+        >
           Las Margaritas
         </Link>
 
         {/* Desktop nav */}
-        <nav className="hidden md:flex items-center gap-1 flex-1">
-          {NAV_ITEMS.map((item) => {
+        <nav className="hidden md:flex items-center gap-0 flex-1 justify-center">
+          {NAV_ITEMS.map((item, i) => {
             const active = pathname === item.href || pathname.startsWith(item.href + '/')
             return (
-              <Link
-                key={item.href}
-                href={item.href}
-                className={`px-3 py-1.5 rounded-md text-sm transition-colors whitespace-nowrap ${
-                  active
-                    ? 'bg-zinc-100 text-zinc-900 font-medium'
-                    : 'text-zinc-600 hover:text-zinc-900 hover:bg-zinc-50'
-                }`}
-              >
-                {item.label}
-              </Link>
+              <span key={item.href} className="flex items-center">
+                {i > 0 && (
+                  <span style={{ width: '1px', height: '12px', background: 'var(--border-dark)', margin: '0 2px', display: 'inline-block' }} />
+                )}
+                <Link
+                  href={item.href}
+                  style={{
+                    padding: '4px 12px',
+                    fontSize: '0.72rem',
+                    letterSpacing: '0.1em',
+                    textTransform: 'uppercase',
+                    color: active ? 'var(--accent)' : 'var(--text-faint)',
+                    textDecoration: 'none',
+                    transition: 'color 0.2s',
+                    fontWeight: active ? 500 : 400,
+                    whiteSpace: 'nowrap',
+                  }}
+                  onMouseEnter={e => { if (!active) e.currentTarget.style.color = 'var(--white)' }}
+                  onMouseLeave={e => { if (!active) e.currentTarget.style.color = 'var(--text-faint)' }}
+                >
+                  {item.label}
+                </Link>
+              </span>
             )
           })}
         </nav>
 
         {/* Desktop search */}
-        <div className="hidden md:block">
+        <div className="hidden md:flex items-center gap-3" style={{ flexShrink: 0 }}>
           {searchOpen ? (
             <form onSubmit={handleSearch} className="flex items-center gap-2">
               <input
@@ -66,18 +98,30 @@ export default function Navbar() {
                 autoFocus
                 type="search"
                 placeholder="Buscar…"
-                className="border border-zinc-300 rounded-lg px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-zinc-900 w-48"
+                style={{
+                  background: 'transparent',
+                  border: 'none',
+                  borderBottom: '1px solid var(--text-faint)',
+                  color: 'var(--white)',
+                  fontSize: '0.8rem',
+                  padding: '4px 0',
+                  outline: 'none',
+                  width: '160px',
+                  letterSpacing: '0.04em',
+                }}
                 onBlur={() => setSearchOpen(false)}
               />
             </form>
           ) : (
             <button
               onClick={() => setSearchOpen(true)}
-              className="p-2 rounded-md text-zinc-500 hover:text-zinc-900 hover:bg-zinc-100 transition-colors"
               aria-label="Buscar"
+              style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--text-faint)', padding: '4px', transition: 'color 0.2s' }}
+              onMouseEnter={e => (e.currentTarget.style.color = 'var(--white)')}
+              onMouseLeave={e => (e.currentTarget.style.color = 'var(--text-faint)')}
             >
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-4.35-4.35M17 11A6 6 0 1 1 5 11a6 6 0 0 1 12 0z" />
+              <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21 21l-4.35-4.35M17 11A6 6 0 1 1 5 11a6 6 0 0 1 12 0z" />
               </svg>
             </button>
           )}
@@ -85,19 +129,31 @@ export default function Navbar() {
 
         {/* Mobile burger */}
         <button
-          className="md:hidden p-2 rounded-md text-zinc-600 hover:bg-zinc-100"
+          className="md:hidden"
           onClick={() => setOpen(!open)}
           aria-label="Abrir menú"
+          style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--text-faint)', padding: '6px' }}
         >
-          <span className="block w-5 h-0.5 bg-current mb-1" />
-          <span className="block w-5 h-0.5 bg-current mb-1" />
-          <span className="block w-5 h-0.5 bg-current" />
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor">
+            {open ? (
+              <>
+                <path strokeLinecap="round" strokeWidth={1.5} d="M4 4l14 14M18 4L4 18" />
+              </>
+            ) : (
+              <>
+                <path strokeLinecap="round" strokeWidth={1.5} d="M3 6h16M3 11h16M3 16h16" />
+              </>
+            )}
+          </svg>
         </button>
       </div>
 
       {/* Mobile menu */}
       {open && (
-        <nav className="md:hidden border-t border-zinc-100 px-4 py-3 flex flex-col gap-1 bg-white">
+        <nav
+          className="md:hidden px-6 py-5 flex flex-col gap-1"
+          style={{ borderTop: '1px solid var(--border-dark)', background: 'var(--bg-dark)' }}
+        >
           {NAV_ITEMS.map((item) => {
             const active = pathname === item.href || pathname.startsWith(item.href + '/')
             return (
@@ -105,26 +161,49 @@ export default function Navbar() {
                 key={item.href}
                 href={item.href}
                 onClick={() => setOpen(false)}
-                className={`px-3 py-2 rounded-md text-sm transition-colors ${
-                  active
-                    ? 'bg-zinc-100 text-zinc-900 font-medium'
-                    : 'text-zinc-600 hover:text-zinc-900 hover:bg-zinc-50'
-                }`}
+                style={{
+                  padding: '10px 0',
+                  fontSize: '0.85rem',
+                  letterSpacing: '0.08em',
+                  textTransform: 'uppercase',
+                  color: active ? 'var(--accent)' : 'var(--text-faint)',
+                  textDecoration: 'none',
+                  borderBottom: '1px solid var(--border-dark)',
+                  display: 'block',
+                }}
               >
                 {item.label}
               </Link>
             )
           })}
-          <form onSubmit={handleSearch} className="mt-2 flex gap-2">
+          <form onSubmit={handleSearch} className="mt-4 flex gap-2">
             <input
               ref={searchRef}
               type="search"
               placeholder="Buscar…"
-              className="flex-1 border border-zinc-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-zinc-900"
+              style={{
+                flex: 1,
+                background: 'transparent',
+                border: 'none',
+                borderBottom: '1px solid var(--text-faint)',
+                color: 'var(--white)',
+                fontSize: '0.8rem',
+                padding: '6px 0',
+                outline: 'none',
+              }}
             />
             <button
               type="submit"
-              className="bg-zinc-900 text-white rounded-lg px-3 py-2 text-sm"
+              style={{
+                background: 'var(--accent)',
+                color: 'var(--white)',
+                border: 'none',
+                cursor: 'pointer',
+                padding: '6px 14px',
+                fontSize: '0.72rem',
+                letterSpacing: '0.08em',
+                textTransform: 'uppercase',
+              }}
             >
               Ir
             </button>
