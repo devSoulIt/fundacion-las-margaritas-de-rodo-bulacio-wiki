@@ -26,12 +26,12 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="es" className={`${cormorant.variable} ${dmSans.variable} h-full`}>
-      <body className="min-h-full flex flex-col" style={{ background: 'var(--bg)', color: 'var(--text)', fontFamily: 'var(--font-body), sans-serif' }}>
+      <body className="min-h-full flex flex-col" style={{ background: 'var(--bg)', color: 'var(--text)', fontFamily: 'var(--font-dm-sans), sans-serif' }}>
         <Navbar />
         <main className="flex-1">{children}</main>
         <footer style={{ borderTop: '1px solid var(--border)', background: 'var(--bg-dark)', color: 'var(--text-faint)' }} className="py-10 px-4">
           <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
-            <span style={{ fontFamily: 'var(--font-display), serif', fontSize: '1.1rem', color: 'var(--white)', fontStyle: 'italic' }}>
+            <span style={{ fontFamily: 'var(--font-cormorant), serif', fontSize: '1.1rem', color: 'var(--white)', fontStyle: 'italic' }}>
               Las Margaritas
             </span>
             <p style={{ fontSize: '0.75rem', letterSpacing: '0.08em', textTransform: 'uppercase' }}>

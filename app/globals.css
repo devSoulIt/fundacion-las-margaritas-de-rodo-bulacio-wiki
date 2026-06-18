@@ -13,9 +13,6 @@
   --border: #d4ccc0;
   --border-dark: #3a3330;
   --white: #faf8f4;
-
-  --font-display: var(--font-cormorant);
-  --font-body: var(--font-dm-sans);
 }
 
 @theme inline {
@@ -36,7 +33,7 @@ html {
 body {
   background: var(--bg);
   color: var(--text);
-  font-family: var(--font-body), sans-serif;
+  font-family: var(--font-dm-sans), sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -57,7 +54,7 @@ body::before {
 }
 
 .font-display {
-  font-family: var(--font-display), Georgia, serif;
+  font-family: var(--font-cormorant), Georgia, serif;
 }
 
 /* TipTap Editor */
@@ -74,15 +71,16 @@ body::before {
 
 /* Wiki content typography */
 .wiki-content {
-  font-family: var(--font-body), sans-serif;
+  font-family: var(--font-dm-sans), sans-serif;
   color: var(--text);
   line-height: 1.8;
+  font-size: 1rem;
 }
 .wiki-content h1,
 .wiki-content h2,
 .wiki-content h3,
 .wiki-content h4 {
-  font-family: var(--font-display), Georgia, serif;
+  font-family: var(--font-cormorant), Georgia, serif;
   color: var(--bg-dark);
   font-weight: 600;
   letter-spacing: -0.01em;
@@ -98,7 +96,12 @@ body::before {
   font-size: 1.35rem;
 }
 .wiki-content p {
+  font-family: var(--font-dm-sans), sans-serif;
   margin-bottom: 1.4em;
+}
+.wiki-content li {
+  font-family: var(--font-dm-sans), sans-serif;
+  margin-bottom: 0.4em;
 }
 .wiki-content a {
   color: var(--accent-dark);
@@ -109,7 +112,7 @@ body::before {
   border-left: 3px solid var(--accent);
   padding-left: 1.5em;
   margin: 2em 0;
-  font-family: var(--font-display), Georgia, serif;
+  font-family: var(--font-cormorant), Georgia, serif;
   font-size: 1.2rem;
   font-style: italic;
   color: var(--text-muted);
@@ -123,9 +126,6 @@ body::before {
 .wiki-content ol {
   padding-left: 1.5em;
   margin-bottom: 1.4em;
-}
-.wiki-content li {
-  margin-bottom: 0.4em;
 }
 
 /* Fade-in animation */
