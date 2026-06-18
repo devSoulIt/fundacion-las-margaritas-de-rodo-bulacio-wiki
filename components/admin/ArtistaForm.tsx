@@ -25,15 +25,15 @@ export default function ArtistaForm({ action, artista }: Props) {
   const [state, formAction, pending] = useActionState(action, null)
 
   return (
-    <form action={formAction} className="space-y-5">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+    <form action={formAction} style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.25rem' }}>
         <div>
-          <label className="block text-sm font-medium text-zinc-700 mb-1">Nombre *</label>
+          <label className="admin-label">Nombre *</label>
           <input
             name="nombre"
             required
             defaultValue={artista?.nombre}
-            className="w-full border border-zinc-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-zinc-900"
+            className="admin-input"
             onChange={(e) => {
               const slugInput = document.getElementById('artista-slug') as HTMLInputElement
               if (slugInput && !artista) slugInput.value = slugify(e.target.value)
@@ -41,76 +41,73 @@ export default function ArtistaForm({ action, artista }: Props) {
           />
         </div>
         <div>
-          <label className="block text-sm font-medium text-zinc-700 mb-1">Slug</label>
+          <label className="admin-label">Slug</label>
           <input
             id="artista-slug"
             name="slug"
             defaultValue={artista?.slug}
-            className="w-full border border-zinc-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-zinc-900 font-mono"
+            className="admin-input"
+            style={{ fontFamily: 'monospace', fontSize: '0.8rem' }}
           />
         </div>
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-zinc-700 mb-1">Foto (URL)</label>
+        <label className="admin-label">Foto (URL)</label>
         <input
           name="foto"
           defaultValue={artista?.foto ?? ''}
-          className="w-full border border-zinc-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-zinc-900"
-          placeholder="https://..."
+          className="admin-input"
+          placeholder="https://…"
         />
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-zinc-700 mb-1">Biografía</label>
-        <RichEditor name="biografia" defaultValue={artista?.biografia ?? ''} placeholder="Biografía del artista…" />
-      </div>
-
-      <div>
-        <label className="block text-sm font-medium text-zinc-700 mb-1">Statement / Texto curatorial</label>
+        <label className="admin-label">Statement / Texto curatorial</label>
         <textarea
           name="statement"
           rows={3}
           defaultValue={artista?.statement ?? ''}
-          className="w-full border border-zinc-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-zinc-900 resize-none"
+          className="admin-input"
+          style={{ resize: 'none', fontFamily: 'var(--font-dm-sans), sans-serif' }}
         />
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-zinc-700 mb-1">Trayectoria y antecedentes</label>
+        <label className="admin-label" style={{ marginBottom: '8px' }}>Biografía</label>
+        <RichEditor name="biografia" defaultValue={artista?.biografia ?? ''} placeholder="Biografía del artista…" />
+      </div>
+
+      <div>
+        <label className="admin-label" style={{ marginBottom: '8px' }}>Trayectoria y antecedentes</label>
         <RichEditor name="trayectoria" defaultValue={artista?.trayectoria ?? ''} placeholder="Recorrido artístico…" />
       </div>
 
-      <div className="flex items-center gap-2">
+      <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
         <input
           type="checkbox"
           id="activo"
           name="activo"
           value="true"
           defaultChecked={artista?.activo ?? true}
-          className="h-4 w-4 rounded border-zinc-300 accent-zinc-900"
+          style={{ width: '16px', height: '16px', accentColor: 'var(--a-accent)', cursor: 'pointer' }}
         />
-        <label htmlFor="activo" className="text-sm text-zinc-700">Visible en la galería pública</label>
+        <label htmlFor="activo" style={{ fontSize: '0.8rem', color: 'var(--a-text-muted)', cursor: 'pointer' }}>
+          Visible en la galería pública
+        </label>
       </div>
 
       {state?.error && (
-        <p className="text-sm text-red-600 bg-red-50 border border-red-200 rounded-lg px-3 py-2">
+        <p style={{ fontSize: '0.8rem', color: 'var(--a-danger)', padding: '8px 12px', background: 'rgba(192,80,58,0.1)', border: '1px solid rgba(192,80,58,0.3)' }}>
           {state.error}
         </p>
       )}
 
-      <div className="flex gap-3 pt-2">
-        <button
-          type="submit"
-          disabled={pending}
-          className="bg-zinc-900 text-white rounded-lg px-4 py-2 text-sm font-medium hover:bg-zinc-700 transition-colors disabled:opacity-50"
-        >
+      <div style={{ display: 'flex', gap: '0.75rem', paddingTop: '0.5rem' }}>
+        <button type="submit" disabled={pending} className="admin-btn">
           {pending ? 'Guardando…' : artista ? 'Guardar cambios' : 'Crear artista'}
         </button>
-        <Link
-          href="/admin/artistas"
-          className="px-4 py-2 text-sm text-zinc-600 hover:text-zinc-900 transition-colors"
-        >
+        <Link href="/admin/artistas" className="admin-btn-ghost">
           Cancelar
         </Link>
       </div>

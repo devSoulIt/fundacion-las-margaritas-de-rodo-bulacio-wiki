@@ -13,45 +13,77 @@ export default async function AdminPaginasPage() {
 
   return (
     <div>
-      <div className="flex items-center justify-between mb-6">
-        <h1 className="text-2xl font-semibold text-zinc-900">Páginas</h1>
-        <Link
-          href="/admin/paginas/nueva"
-          className="bg-zinc-900 text-white rounded-lg px-4 py-2 text-sm font-medium hover:bg-zinc-700 transition-colors"
-        >
+      <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', marginBottom: '2rem' }}>
+        <div>
+          <p style={{ fontSize: '0.65rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--a-accent)', marginBottom: '0.4rem' }}>
+            Contenido
+          </p>
+          <h1 style={{ fontFamily: 'var(--font-cormorant), serif', fontSize: '2rem', fontWeight: 400, fontStyle: 'italic', color: 'var(--a-text)' }}>
+            Páginas
+          </h1>
+        </div>
+        <Link href="/admin/paginas/nueva" className="admin-btn">
           + Nueva página
         </Link>
       </div>
 
-      <div className="bg-white border border-zinc-200 rounded-xl overflow-hidden">
+      <div style={{ background: 'var(--a-surface)', border: '1px solid var(--a-border)' }}>
         {paginas?.length === 0 && (
-          <p className="px-5 py-8 text-sm text-zinc-400 text-center">No hay páginas todavía.</p>
+          <p style={{ padding: '3rem', textAlign: 'center', fontSize: '0.85rem', color: 'var(--a-text-muted)', fontStyle: 'italic', fontFamily: 'var(--font-cormorant), serif' }}>
+            No hay páginas todavía.
+          </p>
         )}
-        <ul className="divide-y divide-zinc-100">
+        <ul>
           {paginas?.map((p) => (
-            <li key={p.id} className="px-5 py-4 flex items-center justify-between gap-4">
-              <div className="min-w-0">
-                <p className="text-sm font-medium text-zinc-900 truncate">{p.titulo}</p>
-                <p className="text-xs text-zinc-400 mt-0.5">
+            <li
+              key={p.id}
+              style={{
+                padding: '1rem 1.25rem',
+                borderBottom: '1px solid var(--a-border)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                gap: '1rem',
+              }}
+            >
+              <div style={{ minWidth: 0 }}>
+                <p style={{ fontSize: '0.9rem', color: 'var(--a-text)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                  {p.titulo}
+                </p>
+                <p style={{ fontSize: '0.72rem', color: 'var(--a-text-muted)', marginTop: '3px' }}>
                   /wiki/{p.slug} · {p.seccion ?? 'sin sección'} · {formatDate(p.updated_at)}
                 </p>
               </div>
-              <div className="flex items-center gap-2 shrink-0">
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexShrink: 0 }}>
                 <form action={togglePublicada.bind(null, p.id, p.publicada)}>
                   <button
                     type="submit"
-                    className={`text-xs px-2 py-1 rounded-full border transition-colors ${
-                      p.publicada
-                        ? 'bg-green-50 text-green-700 border-green-200 hover:bg-green-100'
-                        : 'bg-zinc-50 text-zinc-500 border-zinc-200 hover:bg-zinc-100'
-                    }`}
+                    style={{
+                      background: 'transparent',
+                      border: `1px solid ${p.publicada ? 'var(--a-success)' : 'var(--a-border)'}`,
+                      color: p.publicada ? 'var(--a-success)' : 'var(--a-text-muted)',
+                      cursor: 'pointer',
+                      fontSize: '0.65rem',
+                      letterSpacing: '0.1em',
+                      textTransform: 'uppercase',
+                      padding: '4px 10px',
+                    }}
                   >
                     {p.publicada ? 'Publicada' : 'Borrador'}
                   </button>
                 </form>
                 <Link
                   href={`/admin/paginas/${p.id}/editar`}
-                  className="text-xs text-zinc-500 hover:text-zinc-900 px-2 py-1 rounded hover:bg-zinc-100 transition-colors"
+                  className="a-edit-link"
+                  style={{
+                    fontSize: '0.68rem',
+                    letterSpacing: '0.08em',
+                    textTransform: 'uppercase',
+                    color: 'var(--a-text-muted)',
+                    textDecoration: 'none',
+                    padding: '4px 10px',
+                    border: '1px solid var(--a-border)',
+                  }}
                 >
                   Editar
                 </Link>

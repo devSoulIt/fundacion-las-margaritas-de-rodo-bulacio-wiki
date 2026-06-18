@@ -25,7 +25,7 @@ export default function DeleteButton({
       type="button"
       onClick={handleClick}
       disabled={pending}
-      className="text-xs text-red-500 hover:text-red-700 px-2 py-1 rounded hover:bg-red-50 transition-colors disabled:opacity-50"
+      className="admin-btn-danger"
     >
       {pending ? '…' : label}
     </button>

@@ -14,9 +14,20 @@ export default function CopyUrlButton({ url }: { url: string }) {
   return (
     <button
       onClick={handleCopy}
-      className="text-xs text-zinc-400 hover:text-zinc-900 transition-colors"
+      style={{
+        background: 'transparent',
+        border: 'none',
+        cursor: 'pointer',
+        fontSize: '0.68rem',
+        letterSpacing: '0.06em',
+        color: copied ? 'var(--a-success)' : 'var(--a-text-muted)',
+        transition: 'color 0.15s',
+        padding: 0,
+      }}
+      onMouseEnter={e => { if (!copied) e.currentTarget.style.color = 'var(--a-accent)' }}
+      onMouseLeave={e => { if (!copied) e.currentTarget.style.color = 'var(--a-text-muted)' }}
     >
-      {copied ? '¡Copiado!' : 'Copiar URL'}
+      {copied ? '✓ Copiado' : 'Copiar URL'}
     </button>
   )
 }

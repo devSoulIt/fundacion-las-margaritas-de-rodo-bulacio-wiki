@@ -11,8 +11,15 @@ export default async function ConfiguracionPage() {
 
   return (
     <div>
-      <h1 className="text-2xl font-semibold text-zinc-900 mb-6">Contacto y redes sociales</h1>
-      <div className="bg-white border border-zinc-200 rounded-xl p-6">
+      <div style={{ marginBottom: '2rem' }}>
+        <p style={{ fontSize: '0.65rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--a-accent)', marginBottom: '0.4rem' }}>
+          Ajustes
+        </p>
+        <h1 style={{ fontFamily: 'var(--font-cormorant), serif', fontSize: '2rem', fontWeight: 400, fontStyle: 'italic', color: 'var(--a-text)' }}>
+          Contacto y redes sociales
+        </h1>
+      </div>
+      <div style={{ background: 'var(--a-surface)', border: '1px solid var(--a-border)', padding: '1.5rem', maxWidth: '560px' }}>
         <ConfiguracionForm valores={valores} />
       </div>
     </div>

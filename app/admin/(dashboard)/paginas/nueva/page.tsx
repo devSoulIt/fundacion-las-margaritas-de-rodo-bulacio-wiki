@@ -1,13 +1,22 @@
+import Link from 'next/link'
 import PageForm from '@/components/admin/PageForm'
 import { crearPagina } from '@/app/actions/paginas'
 
 export default function NuevaPaginaPage() {
   return (
     <div>
-      <h1 className="text-2xl font-semibold text-zinc-900 mb-6">Nueva página</h1>
-      <div className="bg-white border border-zinc-200 rounded-xl p-6">
-        <PageForm action={crearPagina} />
+      <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', marginBottom: '2rem' }}>
+        <div>
+          <p style={{ fontSize: '0.65rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--a-accent)', marginBottom: '0.4rem' }}>
+            Contenido
+          </p>
+          <h1 style={{ fontFamily: 'var(--font-cormorant), serif', fontSize: '2rem', fontWeight: 400, fontStyle: 'italic', color: 'var(--a-text)' }}>
+            Nueva página
+          </h1>
+        </div>
+        <Link href="/admin/paginas" className="admin-btn-ghost">← Volver</Link>
       </div>
+      <PageForm action={crearPagina} />
     </div>
   )
 }

@@ -9,10 +9,10 @@ export default async function AdminLayout({ children }: { children: React.ReactN
   if (!user) redirect('/admin/login')
 
   return (
-    <div className="flex min-h-screen bg-zinc-50">
+    <div className="admin-root" style={{ display: 'flex', minHeight: '100vh' }}>
       <AdminSidebar />
-      <div className="flex-1 flex flex-col min-w-0">
-        <div className="flex-1 p-6 md:p-8">{children}</div>
+      <div style={{ flex: 1, display: 'flex', flexDirection: 'column', minWidth: 0 }}>
+        <div style={{ flex: 1, padding: '2rem 2.5rem' }}>{children}</div>
       </div>
     </div>
   )

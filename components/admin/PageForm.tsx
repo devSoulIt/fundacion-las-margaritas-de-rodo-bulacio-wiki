@@ -33,15 +33,15 @@ export default function PageForm({ action, pagina }: Props) {
   const [state, formAction, pending] = useActionState(action, null)
 
   return (
-    <form action={formAction} className="space-y-5">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+    <form action={formAction} style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.25rem' }}>
         <div>
-          <label className="block text-sm font-medium text-zinc-700 mb-1">Título *</label>
+          <label className="admin-label">Título *</label>
           <input
             name="titulo"
             required
             defaultValue={pagina?.titulo}
-            className="w-full border border-zinc-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-zinc-900"
+            className="admin-input"
             onChange={(e) => {
               const slugInput = document.getElementById('slug-input') as HTMLInputElement
               if (slugInput && !pagina) slugInput.value = slugify(e.target.value)
@@ -49,34 +49,37 @@ export default function PageForm({ action, pagina }: Props) {
           />
         </div>
         <div>
-          <label className="block text-sm font-medium text-zinc-700 mb-1">Slug (URL)</label>
+          <label className="admin-label">Slug (URL)</label>
           <input
             id="slug-input"
             name="slug"
             defaultValue={pagina?.slug}
-            className="w-full border border-zinc-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-zinc-900 font-mono"
+            className="admin-input"
             placeholder="se-genera-automatico"
+            style={{ fontFamily: 'monospace', fontSize: '0.8rem' }}
           />
         </div>
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-zinc-700 mb-1">Resumen (para SEO y cards)</label>
+        <label className="admin-label">Resumen (SEO y cards)</label>
         <textarea
           name="resumen"
           rows={2}
           defaultValue={pagina?.resumen ?? ''}
-          className="w-full border border-zinc-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-zinc-900 resize-none"
+          className="admin-input"
+          style={{ resize: 'none', fontFamily: 'var(--font-dm-sans), sans-serif' }}
         />
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.25rem' }}>
         <div>
-          <label className="block text-sm font-medium text-zinc-700 mb-1">Sección del menú</label>
+          <label className="admin-label">Sección del menú</label>
           <select
             name="seccion"
             defaultValue={pagina?.seccion ?? ''}
-            className="w-full border border-zinc-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-zinc-900 bg-white"
+            className="admin-input"
+            style={{ cursor: 'pointer' }}
           >
             {SECCIONES.map((s) => (
               <option key={s.value} value={s.value}>{s.label}</option>
@@ -84,18 +87,18 @@ export default function PageForm({ action, pagina }: Props) {
           </select>
         </div>
         <div>
-          <label className="block text-sm font-medium text-zinc-700 mb-1">Imagen de portada (URL)</label>
+          <label className="admin-label">Imagen de portada (URL)</label>
           <input
             name="imagen_portada"
             defaultValue={pagina?.imagen_portada ?? ''}
-            className="w-full border border-zinc-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-zinc-900"
-            placeholder="https://..."
+            className="admin-input"
+            placeholder="https://…"
           />
         </div>
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-zinc-700 mb-1">Contenido</label>
+        <label className="admin-label" style={{ marginBottom: '8px' }}>Contenido</label>
         <RichEditor
           name="contenido"
           defaultValue={pagina?.contenido ?? ''}
@@ -103,36 +106,31 @@ export default function PageForm({ action, pagina }: Props) {
         />
       </div>
 
-      <div className="flex items-center gap-2">
+      <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
         <input
           type="checkbox"
           id="publicada"
           name="publicada"
           value="true"
           defaultChecked={pagina?.publicada}
-          className="h-4 w-4 rounded border-zinc-300 accent-zinc-900"
+          style={{ width: '16px', height: '16px', accentColor: 'var(--a-accent)', cursor: 'pointer' }}
         />
-        <label htmlFor="publicada" className="text-sm text-zinc-700">Publicar (visible en el sitio)</label>
+        <label htmlFor="publicada" style={{ fontSize: '0.8rem', color: 'var(--a-text-muted)', cursor: 'pointer' }}>
+          Publicar (visible en el sitio)
+        </label>
       </div>
 
       {state?.error && (
-        <p className="text-sm text-red-600 bg-red-50 border border-red-200 rounded-lg px-3 py-2">
+        <p style={{ fontSize: '0.8rem', color: 'var(--a-danger)', padding: '8px 12px', background: 'rgba(192,80,58,0.1)', border: '1px solid rgba(192,80,58,0.3)' }}>
           {state.error}
         </p>
       )}
 
-      <div className="flex gap-3 pt-2">
-        <button
-          type="submit"
-          disabled={pending}
-          className="bg-zinc-900 text-white rounded-lg px-4 py-2 text-sm font-medium hover:bg-zinc-700 transition-colors disabled:opacity-50"
-        >
+      <div style={{ display: 'flex', gap: '0.75rem', paddingTop: '0.5rem' }}>
+        <button type="submit" disabled={pending} className="admin-btn">
           {pending ? 'Guardando…' : pagina ? 'Guardar cambios' : 'Crear página'}
         </button>
-        <Link
-          href="/admin/paginas"
-          className="px-4 py-2 text-sm text-zinc-600 hover:text-zinc-900 transition-colors"
-        >
+        <Link href="/admin/paginas" className="admin-btn-ghost">
           Cancelar
         </Link>
       </div>

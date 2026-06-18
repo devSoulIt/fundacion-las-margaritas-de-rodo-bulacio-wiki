@@ -14,28 +14,79 @@ export default async function AdminMediaPage() {
 
   return (
     <div>
-      <h1 className="text-2xl font-semibold text-zinc-900 mb-6">Biblioteca de medios</h1>
+      <div style={{ marginBottom: '2rem' }}>
+        <p style={{ fontSize: '0.65rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--a-accent)', marginBottom: '0.4rem' }}>
+          Archivos
+        </p>
+        <h1 style={{ fontFamily: 'var(--font-cormorant), serif', fontSize: '2rem', fontWeight: 400, fontStyle: 'italic', color: 'var(--a-text)' }}>
+          Biblioteca de medios
+        </h1>
+      </div>
 
-      <div className="bg-white border border-zinc-200 rounded-xl p-6 mb-6">
-        <p className="text-sm font-medium text-zinc-700 mb-3">Subir archivo</p>
+      <div
+        style={{
+          background: 'var(--a-surface)',
+          border: '1px solid var(--a-border)',
+          padding: '1.5rem',
+          marginBottom: '1.5rem',
+        }}
+      >
+        <p style={{ fontSize: '0.68rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--a-text-muted)', marginBottom: '1rem' }}>
+          Subir archivo
+        </p>
         <MediaUploader />
       </div>
 
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+      {archivos?.length === 0 && (
+        <p style={{ padding: '3rem', textAlign: 'center', fontSize: '0.85rem', color: 'var(--a-text-muted)', fontStyle: 'italic', fontFamily: 'var(--font-cormorant), serif' }}>
+          No hay archivos subidos todavía.
+        </p>
+      )}
+
+      <div
+        style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fill, minmax(180px, 1fr))',
+          gap: '1px',
+          background: 'var(--a-border)',
+        }}
+      >
         {archivos?.map((a) => (
-          <div key={a.id} className="group relative bg-white border border-zinc-200 rounded-xl overflow-hidden">
+          <div
+            key={a.id}
+            style={{ background: 'var(--a-surface)', overflow: 'hidden', display: 'flex', flexDirection: 'column' }}
+          >
             {a.tipo === 'image' ? (
-              <div className="relative aspect-square">
+              <div style={{ position: 'relative', aspectRatio: '1', background: 'var(--a-bg)' }}>
                 <Image src={a.url} alt={a.nombre} fill className="object-cover" sizes="200px" />
               </div>
             ) : (
-              <div className="aspect-square bg-zinc-100 flex items-center justify-center">
-                <span className="text-2xl">{a.tipo === 'video' ? '🎬' : '📄'}</span>
+              <div
+                style={{
+                  aspectRatio: '1',
+                  background: 'var(--a-bg)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}
+              >
+                <span
+                  style={{
+                    fontFamily: 'var(--font-cormorant), serif',
+                    fontSize: '2rem',
+                    color: 'var(--a-text-muted)',
+                    fontStyle: 'italic',
+                  }}
+                >
+                  {a.tipo === 'video' ? 'vid' : 'doc'}
+                </span>
               </div>
             )}
-            <div className="p-2">
-              <p className="text-xs text-zinc-600 truncate">{a.nombre}</p>
-              <div className="flex items-center justify-between mt-1">
+            <div style={{ padding: '0.75rem' }}>
+              <p style={{ fontSize: '0.72rem', color: 'var(--a-text-muted)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', marginBottom: '0.5rem' }}>
+                {a.nombre}
+              </p>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                 <CopyUrlButton url={a.url} />
                 <DeleteButton
                   action={eliminarArchivo.bind(null, a.id, a.url)}
@@ -46,10 +97,6 @@ export default async function AdminMediaPage() {
           </div>
         ))}
       </div>
-
-      {archivos?.length === 0 && (
-        <p className="text-sm text-zinc-400 text-center py-12">No hay archivos subidos todavía.</p>
-      )}
     </div>
   )
 }

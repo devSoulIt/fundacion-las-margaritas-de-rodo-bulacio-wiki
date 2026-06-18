@@ -34,21 +34,23 @@ export default function MediaUploader() {
 
   return (
     <div>
-      <label className="flex items-center gap-3 cursor-pointer">
+      <label style={{ display: 'inline-flex', alignItems: 'center', gap: '1rem', cursor: 'pointer' }}>
         <input
           ref={inputRef}
           type="file"
           accept="image/*,video/*,.pdf"
-          className="sr-only"
+          style={{ position: 'absolute', width: '1px', height: '1px', overflow: 'hidden', opacity: 0 }}
           onChange={handleChange}
           disabled={uploading}
         />
-        <span className="inline-flex items-center gap-2 bg-zinc-900 text-white rounded-lg px-4 py-2 text-sm font-medium hover:bg-zinc-700 transition-colors">
+        <span className="admin-btn">
           {uploading ? 'Subiendo…' : 'Seleccionar archivo'}
         </span>
-        <span className="text-sm text-zinc-400">Imágenes, videos o PDF</span>
+        <span style={{ fontSize: '0.78rem', color: 'var(--a-text-muted)' }}>Imágenes, videos o PDF</span>
       </label>
-      {error && <p className="mt-2 text-sm text-red-600">{error}</p>}
+      {error && (
+        <p style={{ marginTop: '0.5rem', fontSize: '0.8rem', color: 'var(--a-danger)' }}>{error}</p>
+      )}
     </div>
   )
 }

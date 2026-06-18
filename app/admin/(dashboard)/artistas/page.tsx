@@ -13,36 +13,68 @@ export default async function AdminArtistasPage() {
 
   return (
     <div>
-      <div className="flex items-center justify-between mb-6">
-        <h1 className="text-2xl font-semibold text-zinc-900">Artistas</h1>
-        <Link
-          href="/admin/artistas/nuevo"
-          className="bg-zinc-900 text-white rounded-lg px-4 py-2 text-sm font-medium hover:bg-zinc-700 transition-colors"
-        >
+      <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', marginBottom: '2rem' }}>
+        <div>
+          <p style={{ fontSize: '0.65rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--a-accent)', marginBottom: '0.4rem' }}>
+            Galería
+          </p>
+          <h1 style={{ fontFamily: 'var(--font-cormorant), serif', fontSize: '2rem', fontWeight: 400, fontStyle: 'italic', color: 'var(--a-text)' }}>
+            Artistas
+          </h1>
+        </div>
+        <Link href="/admin/artistas/nuevo" className="admin-btn">
           + Nuevo artista
         </Link>
       </div>
 
-      <div className="bg-white border border-zinc-200 rounded-xl overflow-hidden">
+      <div style={{ background: 'var(--a-surface)', border: '1px solid var(--a-border)' }}>
         {artistas?.length === 0 && (
-          <p className="px-5 py-8 text-sm text-zinc-400 text-center">No hay artistas todavía.</p>
+          <p style={{ padding: '3rem', textAlign: 'center', fontSize: '0.85rem', color: 'var(--a-text-muted)', fontStyle: 'italic', fontFamily: 'var(--font-cormorant), serif' }}>
+            No hay artistas todavía.
+          </p>
         )}
-        <ul className="divide-y divide-zinc-100">
+        <ul>
           {artistas?.map((a) => (
-            <li key={a.id} className="px-5 py-4 flex items-center justify-between gap-4">
+            <li
+              key={a.id}
+              style={{
+                padding: '1rem 1.25rem',
+                borderBottom: '1px solid var(--a-border)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                gap: '1rem',
+              }}
+            >
               <div>
-                <p className="text-sm font-medium text-zinc-900">{a.nombre}</p>
-                <p className="text-xs text-zinc-400">/galeria/{a.slug}</p>
+                <p style={{ fontSize: '0.9rem', color: 'var(--a-text)' }}>{a.nombre}</p>
+                <p style={{ fontSize: '0.72rem', color: 'var(--a-text-muted)', marginTop: '3px' }}>/galeria/{a.slug}</p>
               </div>
-              <div className="flex items-center gap-2 shrink-0">
-                <span className={`text-xs px-2 py-1 rounded-full border ${
-                  a.activo ? 'bg-green-50 text-green-700 border-green-200' : 'bg-zinc-50 text-zinc-500 border-zinc-200'
-                }`}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexShrink: 0 }}>
+                <span
+                  style={{
+                    fontSize: '0.65rem',
+                    letterSpacing: '0.1em',
+                    textTransform: 'uppercase',
+                    padding: '4px 10px',
+                    border: `1px solid ${a.activo ? 'var(--a-success)' : 'var(--a-border)'}`,
+                    color: a.activo ? 'var(--a-success)' : 'var(--a-text-muted)',
+                  }}
+                >
                   {a.activo ? 'Activo' : 'Oculto'}
                 </span>
                 <Link
                   href={`/admin/artistas/${a.id}/editar`}
-                  className="text-xs text-zinc-500 hover:text-zinc-900 px-2 py-1 rounded hover:bg-zinc-100 transition-colors"
+                  className="a-edit-link"
+                  style={{
+                    fontSize: '0.68rem',
+                    letterSpacing: '0.08em',
+                    textTransform: 'uppercase',
+                    color: 'var(--a-text-muted)',
+                    textDecoration: 'none',
+                    padding: '4px 10px',
+                    border: '1px solid var(--a-border)',
+                  }}
                 >
                   Editar
                 </Link>

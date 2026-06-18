@@ -7,42 +7,92 @@ export default function LoginPage() {
   const [state, action, pending] = useActionState(signIn, null)
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-zinc-50 px-4">
-      <div className="w-full max-w-sm bg-white border border-zinc-200 rounded-xl p-8 shadow-sm">
-        <h1 className="text-xl font-semibold text-zinc-900 mb-1">Acceso admin</h1>
-        <p className="text-sm text-zinc-500 mb-6">Fundación Las Margaritas</p>
+    <div
+      className="admin-root"
+      style={{
+        minHeight: '100vh',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: '2rem',
+      }}
+    >
+      <div
+        style={{
+          width: '100%',
+          maxWidth: '380px',
+          background: 'var(--a-surface)',
+          border: '1px solid var(--a-border)',
+          padding: '2.5rem',
+        }}
+      >
+        <div
+          style={{
+            width: '32px',
+            height: '1px',
+            background: 'var(--a-accent)',
+            marginBottom: '1.5rem',
+          }}
+        />
+        <p
+          style={{
+            fontFamily: 'var(--font-cormorant), serif',
+            fontSize: '1.5rem',
+            fontStyle: 'italic',
+            fontWeight: 300,
+            color: 'var(--a-accent)',
+            marginBottom: '0.25rem',
+          }}
+        >
+          Las Margaritas
+        </p>
+        <p
+          style={{
+            fontSize: '0.68rem',
+            letterSpacing: '0.14em',
+            textTransform: 'uppercase',
+            color: 'var(--a-text-muted)',
+            marginBottom: '2rem',
+          }}
+        >
+          Acceso administrativo
+        </p>
 
-        <form action={action} className="flex flex-col gap-4">
+        <form action={action} style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
           <div>
-            <label htmlFor="email" className="block text-sm font-medium text-zinc-700 mb-1">
-              Email
-            </label>
+            <label htmlFor="email" className="admin-label">Email</label>
             <input
               id="email"
               name="email"
               type="email"
               required
               autoComplete="email"
-              className="w-full border border-zinc-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-zinc-900 focus:border-transparent"
+              className="admin-input"
             />
           </div>
 
           <div>
-            <label htmlFor="password" className="block text-sm font-medium text-zinc-700 mb-1">
-              Contraseña
-            </label>
+            <label htmlFor="password" className="admin-label">Contraseña</label>
             <input
               id="password"
               name="password"
               type="password"
               required
               autoComplete="current-password"
-              className="w-full border border-zinc-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-zinc-900 focus:border-transparent"
+              className="admin-input"
             />
           </div>
 
           {state?.error && (
-            <p className="text-sm text-red-600 bg-red-50 border border-red-200 rounded-lg px-3 py-2">
+            <p
+              style={{
+                fontSize: '0.8rem',
+                color: 'var(--a-danger)',
+                padding: '8px 12px',
+                background: 'rgba(192,80,58,0.1)',
+                border: '1px solid rgba(192,80,58,0.3)',
+              }}
+            >
               {state.error}
             </p>
           )}
@@ -50,7 +100,8 @@ export default function LoginPage() {
           <button
             type="submit"
             disabled={pending}
-            className="w-full bg-zinc-900 text-white rounded-lg py-2 text-sm font-medium hover:bg-zinc-700 transition-colors disabled:opacity-50"
+            className="admin-btn"
+            style={{ justifyContent: 'center', marginTop: '0.25rem' }}
           >
             {pending ? 'Ingresando…' : 'Ingresar'}
           </button>

@@ -1,4 +1,5 @@
 import { notFound } from 'next/navigation'
+import Link from 'next/link'
 import { createClient } from '@/app/lib/supabase/server'
 import { actualizarPagina } from '@/app/actions/paginas'
 import PageForm from '@/components/admin/PageForm'
@@ -19,10 +20,18 @@ export default async function EditarPaginaPage(props: PageProps<'/admin/paginas/
 
   return (
     <div>
-      <h1 className="text-2xl font-semibold text-zinc-900 mb-6">Editar: {pagina.titulo}</h1>
-      <div className="bg-white border border-zinc-200 rounded-xl p-6">
-        <PageForm action={action} pagina={pagina} />
+      <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', marginBottom: '2rem' }}>
+        <div>
+          <p style={{ fontSize: '0.65rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--a-accent)', marginBottom: '0.4rem' }}>
+            Editando
+          </p>
+          <h1 style={{ fontFamily: 'var(--font-cormorant), serif', fontSize: '2rem', fontWeight: 400, fontStyle: 'italic', color: 'var(--a-text)' }}>
+            {pagina.titulo}
+          </h1>
+        </div>
+        <Link href="/admin/paginas" className="admin-btn-ghost">← Volver</Link>
       </div>
+      <PageForm action={action} pagina={pagina} />
     </div>
   )
 }

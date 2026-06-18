@@ -23,36 +23,34 @@ export default function ConfiguracionForm({ valores }: Props) {
   const [state, action, pending] = useActionState(guardarConfiguracion, null)
 
   return (
-    <form action={action} className="space-y-4">
+    <form action={action} style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
       {CAMPOS.map((campo) => (
         <div key={campo.clave}>
-          <label className="block text-sm font-medium text-zinc-700 mb-1">{campo.label}</label>
+          <label className="admin-label">{campo.label}</label>
           <input
             name={campo.clave}
             defaultValue={valores[campo.clave] ?? ''}
-            className="w-full border border-zinc-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-zinc-900"
+            className="admin-input"
           />
         </div>
       ))}
 
       {state?.error && (
-        <p className="text-sm text-red-600 bg-red-50 border border-red-200 rounded-lg px-3 py-2">
+        <p style={{ fontSize: '0.8rem', color: 'var(--a-danger)', padding: '8px 12px', background: 'rgba(192,80,58,0.1)', border: '1px solid rgba(192,80,58,0.3)' }}>
           {state.error}
         </p>
       )}
       {state?.success && (
-        <p className="text-sm text-green-700 bg-green-50 border border-green-200 rounded-lg px-3 py-2">
+        <p style={{ fontSize: '0.8rem', color: 'var(--a-success)', padding: '8px 12px', background: 'rgba(106,170,100,0.1)', border: '1px solid rgba(106,170,100,0.3)' }}>
           Configuración guardada correctamente.
         </p>
       )}
 
-      <button
-        type="submit"
-        disabled={pending}
-        className="bg-zinc-900 text-white rounded-lg px-4 py-2 text-sm font-medium hover:bg-zinc-700 transition-colors disabled:opacity-50"
-      >
-        {pending ? 'Guardando…' : 'Guardar'}
-      </button>
+      <div>
+        <button type="submit" disabled={pending} className="admin-btn">
+          {pending ? 'Guardando…' : 'Guardar'}
+        </button>
+      </div>
     </form>
   )
 }

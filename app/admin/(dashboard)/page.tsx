@@ -19,9 +19,17 @@ export default async function AdminDashboard() {
 
   return (
     <div>
-      <h1 className="text-2xl font-semibold text-zinc-900 mb-6">Dashboard</h1>
+      <div style={{ marginBottom: '2rem' }}>
+        <p style={{ fontSize: '0.65rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--a-accent)', marginBottom: '0.4rem' }}>
+          Resumen
+        </p>
+        <h1 style={{ fontFamily: 'var(--font-cormorant), serif', fontSize: '2rem', fontWeight: 400, fontStyle: 'italic', color: 'var(--a-text)' }}>
+          Dashboard
+        </h1>
+      </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
+      {/* Stats */}
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1px', background: 'var(--a-border)', marginBottom: '2rem' }}>
         {[
           { label: 'Páginas', count: totalPaginas ?? 0, href: '/admin/paginas' },
           { label: 'Artistas', count: totalArtistas ?? 0, href: '/admin/artistas' },
@@ -30,38 +38,79 @@ export default async function AdminDashboard() {
           <Link
             key={stat.href}
             href={stat.href}
-            className="bg-white border border-zinc-200 rounded-xl p-5 hover:border-zinc-300 transition-colors"
+            className="a-stat-card"
+            style={{
+              background: 'var(--a-surface)',
+              padding: '1.5rem',
+              textDecoration: 'none',
+              display: 'block',
+            }}
           >
-            <p className="text-3xl font-bold text-zinc-900">{stat.count}</p>
-            <p className="text-sm text-zinc-500 mt-1">{stat.label}</p>
+            <p style={{ fontFamily: 'var(--font-cormorant), serif', fontSize: '3rem', fontWeight: 300, color: 'var(--a-accent)', lineHeight: 1 }}>
+              {stat.count}
+            </p>
+            <p style={{ fontSize: '0.7rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--a-text-muted)', marginTop: '0.5rem' }}>
+              {stat.label}
+            </p>
           </Link>
         ))}
       </div>
 
-      <div className="bg-white border border-zinc-200 rounded-xl">
-        <div className="px-5 py-4 border-b border-zinc-100 flex items-center justify-between">
-          <h2 className="text-sm font-medium text-zinc-900">Páginas recientes</h2>
-          <Link href="/admin/paginas/nueva" className="text-xs text-zinc-500 hover:text-zinc-900 transition-colors">
+      {/* Recent pages */}
+      <div style={{ background: 'var(--a-surface)', border: '1px solid var(--a-border)' }}>
+        <div
+          style={{
+            padding: '1rem 1.25rem',
+            borderBottom: '1px solid var(--a-border)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+          }}
+        >
+          <p style={{ fontSize: '0.7rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--a-text-muted)' }}>
+            Páginas recientes
+          </p>
+          <Link
+            href="/admin/paginas/nueva"
+            style={{ fontSize: '0.7rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--a-accent)', textDecoration: 'none' }}
+          >
             + Nueva
           </Link>
         </div>
-        <ul className="divide-y divide-zinc-100">
+        <ul>
           {ultimasPaginas?.map((p) => (
-            <li key={p.id} className="px-5 py-3 flex items-center justify-between">
-              <div>
-                <p className="text-sm font-medium text-zinc-900">{p.titulo}</p>
-                <p className="text-xs text-zinc-400">/wiki/{p.slug}</p>
+            <li
+              key={p.id}
+              style={{
+                padding: '0.875rem 1.25rem',
+                borderBottom: '1px solid var(--a-border)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                gap: '1rem',
+              }}
+            >
+              <div style={{ minWidth: 0 }}>
+                <p style={{ fontSize: '0.85rem', color: 'var(--a-text)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                  {p.titulo}
+                </p>
+                <p style={{ fontSize: '0.72rem', color: 'var(--a-text-muted)', marginTop: '2px' }}>/wiki/{p.slug}</p>
               </div>
-              <div className="flex items-center gap-3">
+              <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', flexShrink: 0 }}>
                 <span
-                  className={`inline-block w-2 h-2 rounded-full ${
-                    p.publicada ? 'bg-green-400' : 'bg-zinc-300'
-                  }`}
+                  style={{
+                    width: '6px',
+                    height: '6px',
+                    borderRadius: '50%',
+                    background: p.publicada ? 'var(--a-success)' : 'var(--a-text-faint)',
+                    display: 'inline-block',
+                  }}
                   title={p.publicada ? 'Publicada' : 'Borrador'}
                 />
                 <Link
                   href={`/admin/paginas/${p.id}/editar`}
-                  className="text-xs text-zinc-500 hover:text-zinc-900 transition-colors"
+                  className="a-row-link"
+                  style={{ fontSize: '0.7rem', letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--a-text-muted)', textDecoration: 'none' }}
                 >
                   Editar
                 </Link>
