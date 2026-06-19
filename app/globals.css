@@ -2,24 +2,30 @@
 @plugin "@tailwindcss/typography";
 
 :root {
-  --bg: #f2ede4;
-  --bg-subtle: #e8e2d6;
-  --bg-dark: #1a1614;
-  --text: #2d2825;
-  --text-muted: #7a6f65;
-  --text-faint: #b0a89e;
-  --accent: #c9954c;
-  --accent-dark: #a67a38;
-  --border: #d4ccc0;
-  --border-dark: #3a3330;
-  --white: #faf8f4;
+  --bg: #f7bfcc;
+  --bg-subtle: #eea8b8;
+  --bg-dark: #3d0a1c;
+  --text: #1a0512;
+  --text-muted: #6a2040;
+  --text-faint: #b06080;
+  --accent: #f5c500;
+  --accent-dark: #d4a800;
+  --accent-violet: #7c4dab;
+  --accent-violet-dark: #5e3882;
+  --accent-orange: #d4551a;
+  --accent-orange-dark: #b04010;
+  --accent-teal: #4ab8b5;
+  --accent-teal-dark: #359896;
+  --border: #e898b2;
+  --border-dark: #5a1530;
+  --white: #fff5f8;
 }
 
 @theme inline {
   --color-background: var(--bg);
   --color-foreground: var(--text);
   --font-sans: var(--font-dm-sans);
-  --font-serif: var(--font-cormorant);
+  --font-serif: var(--font-playfair);
 }
 
 *, *::before, *::after {
@@ -42,19 +48,19 @@ body::before {
   content: '';
   position: fixed;
   inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='70' height='70' viewBox='0 0 70 70'%3E%3Cg transform='translate(35 35)'%3E%3Cellipse rx='2.5' ry='8' fill='white' opacity='0.3'/%3E%3Cellipse rx='2.5' ry='8' transform='rotate(45)' fill='white' opacity='0.3'/%3E%3Cellipse rx='2.5' ry='8' transform='rotate(90)' fill='white' opacity='0.3'/%3E%3Cellipse rx='2.5' ry='8' transform='rotate(135)' fill='white' opacity='0.3'/%3E%3Ccircle r='3.5' fill='%23f5c500' opacity='0.4'/%3E%3C/g%3E%3C/svg%3E");
   pointer-events: none;
   z-index: 9999;
-  opacity: 0.5;
+  opacity: 0.45;
 }
 
 ::selection {
   background: var(--accent);
-  color: var(--white);
+  color: var(--text);
 }
 
 .font-display {
-  font-family: var(--font-cormorant), Georgia, serif;
+  font-family: var(--font-playfair), Georgia, serif;
 }
 
 /* TipTap Editor */
@@ -80,16 +86,16 @@ body::before {
 .wiki-content h2,
 .wiki-content h3,
 .wiki-content h4 {
-  font-family: var(--font-cormorant), Georgia, serif;
+  font-family: var(--font-playfair), Georgia, serif;
   color: var(--bg-dark);
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: -0.01em;
   margin-top: 2.5em;
   margin-bottom: 0.75em;
 }
 .wiki-content h2 {
   font-size: 1.75rem;
-  border-bottom: 1px solid var(--border);
+  border-bottom: 3px solid var(--accent);
   padding-bottom: 0.4em;
 }
 .wiki-content h3 {
@@ -104,23 +110,25 @@ body::before {
   margin-bottom: 0.4em;
 }
 .wiki-content a {
-  color: var(--accent-dark);
+  color: var(--accent-violet);
   text-decoration: underline;
   text-underline-offset: 3px;
 }
 .wiki-content blockquote {
-  border-left: 3px solid var(--accent);
-  padding-left: 1.5em;
+  border-left: 4px solid var(--accent);
+  padding: 1rem 1.5rem;
   margin: 2em 0;
-  font-family: var(--font-cormorant), Georgia, serif;
+  font-family: var(--font-playfair), Georgia, serif;
   font-size: 1.2rem;
   font-style: italic;
   color: var(--text-muted);
+  background: rgba(245,197,0,0.12);
 }
 .wiki-content img {
-  border-radius: 4px;
+  border-radius: 0;
   width: 100%;
   height: auto;
+  border: 3px solid var(--text);
 }
 .wiki-content ul,
 .wiki-content ol {
@@ -155,7 +163,7 @@ body::before {
 .ruled-line {
   display: block;
   width: 40px;
-  height: 1px;
+  height: 3px;
   background: var(--accent);
   margin-bottom: 1rem;
 }
@@ -290,14 +298,14 @@ body::before {
 .hover-white { transition: color 0.2s; }
 .hover-white:hover { color: var(--white); }
 
-.hover-bg-subtle { transition: background 0.25s; }
-.hover-bg-subtle:hover { background: var(--bg-subtle); }
+.hover-bg-subtle { transition: filter 0.25s; }
+.hover-bg-subtle:hover { filter: brightness(0.94); }
 
 .hover-accent-bg { transition: background 0.2s; }
-.hover-accent-bg:hover { background: var(--accent-dark); }
+.hover-accent-bg:hover { background: var(--accent-dark) !important; }
 
 .hover-dark-accent-bg { transition: background 0.2s; }
-.hover-dark-accent-bg:hover { background: var(--accent); }
+.hover-dark-accent-bg:hover { background: var(--accent) !important; }
 
 .hover-border-accent { transition: border-color 0.2s, color 0.2s; }
 .hover-border-accent:hover { border-color: var(--accent); color: var(--accent); }
@@ -305,7 +313,16 @@ body::before {
 .hover-indent { transition: padding-left 0.2s; }
 .hover-indent:hover { padding-left: 0.5rem; }
 
-.btn-outline:hover { border-color: var(--text-faint); color: var(--white); }
+.card-color-hover { transition: filter 0.25s, transform 0.25s; }
+.card-color-hover:hover { filter: brightness(0.92); transform: translateY(-3px); }
+
+.btn-primary-hero { transition: opacity 0.2s; }
+.btn-primary-hero:hover { opacity: 0.8; }
+
+.btn-outline-hero { transition: background 0.2s, color 0.2s; }
+.btn-outline-hero:hover { background: var(--text) !important; color: var(--accent) !important; }
+
+.btn-outline:hover { border-color: var(--accent); color: var(--text); background: var(--accent); }
 .btn-ghost-dark:hover { color: var(--accent); }
 
 .nav-logo:hover { color: var(--accent); }

@@ -34,26 +34,30 @@ export default function Navbar() {
   return (
     <header
       className="sticky top-0 z-50"
-      style={{ background: 'var(--bg-dark)', borderBottom: '1px solid var(--border-dark)' }}
+      style={{ background: 'var(--bg-dark)', borderBottom: '3px solid var(--accent)' }}
     >
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between h-16 gap-6">
         {/* Logo */}
         <Link
           href="/"
           style={{
-            fontFamily: 'var(--font-display), serif',
-            fontSize: '1.25rem',
+            fontFamily: 'var(--font-playfair), serif',
+            fontSize: '1.2rem',
             fontStyle: 'italic',
-            fontWeight: 400,
-            color: 'var(--white)',
+            fontWeight: 700,
+            color: 'var(--accent)',
             letterSpacing: '0.01em',
             flexShrink: 0,
             textDecoration: 'none',
-            transition: 'color 0.2s',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '0.4rem',
+            transition: 'opacity 0.2s',
           }}
-          onMouseEnter={e => (e.currentTarget.style.color = 'var(--accent)')}
-          onMouseLeave={e => (e.currentTarget.style.color = 'var(--white)')}
+          onMouseEnter={e => (e.currentTarget.style.opacity = '0.7')}
+          onMouseLeave={e => (e.currentTarget.style.opacity = '1')}
         >
+          <span style={{ fontSize: '0.95rem', lineHeight: 1 }}>✿</span>
           Las Margaritas
         </Link>
 
@@ -64,23 +68,23 @@ export default function Navbar() {
             return (
               <span key={item.href} className="flex items-center">
                 {i > 0 && (
-                  <span style={{ width: '1px', height: '12px', background: 'var(--border-dark)', margin: '0 2px', display: 'inline-block' }} />
+                  <span style={{ width: '1px', height: '12px', background: 'var(--accent-violet)', opacity: 0.35, margin: '0 2px', display: 'inline-block' }} />
                 )}
                 <Link
                   href={item.href}
                   style={{
-                    padding: '4px 12px',
-                    fontSize: '0.72rem',
+                    padding: '4px 11px',
+                    fontSize: '0.7rem',
                     letterSpacing: '0.1em',
                     textTransform: 'uppercase',
-                    color: active ? 'var(--accent)' : 'var(--text-faint)',
+                    color: active ? 'var(--accent)' : 'var(--white)',
                     textDecoration: 'none',
                     transition: 'color 0.2s',
-                    fontWeight: active ? 500 : 400,
+                    fontWeight: active ? 700 : 400,
                     whiteSpace: 'nowrap',
                   }}
-                  onMouseEnter={e => { if (!active) e.currentTarget.style.color = 'var(--white)' }}
-                  onMouseLeave={e => { if (!active) e.currentTarget.style.color = 'var(--text-faint)' }}
+                  onMouseEnter={e => { if (!active) e.currentTarget.style.color = 'var(--accent)' }}
+                  onMouseLeave={e => { if (!active) e.currentTarget.style.color = 'var(--white)' }}
                 >
                   {item.label}
                 </Link>
@@ -101,7 +105,7 @@ export default function Navbar() {
                 style={{
                   background: 'transparent',
                   border: 'none',
-                  borderBottom: '1px solid var(--text-faint)',
+                  borderBottom: '2px solid var(--accent)',
                   color: 'var(--white)',
                   fontSize: '0.8rem',
                   padding: '4px 0',
@@ -116,9 +120,9 @@ export default function Navbar() {
             <button
               onClick={() => setSearchOpen(true)}
               aria-label="Buscar"
-              style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--text-faint)', padding: '4px', transition: 'color 0.2s' }}
-              onMouseEnter={e => (e.currentTarget.style.color = 'var(--white)')}
-              onMouseLeave={e => (e.currentTarget.style.color = 'var(--text-faint)')}
+              style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--white)', padding: '4px', transition: 'color 0.2s' }}
+              onMouseEnter={e => (e.currentTarget.style.color = 'var(--accent)')}
+              onMouseLeave={e => (e.currentTarget.style.color = 'var(--white)')}
             >
               <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21 21l-4.35-4.35M17 11A6 6 0 1 1 5 11a6 6 0 0 1 12 0z" />
@@ -132,17 +136,13 @@ export default function Navbar() {
           className="md:hidden"
           onClick={() => setOpen(!open)}
           aria-label="Abrir menú"
-          style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--text-faint)', padding: '6px' }}
+          style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--white)', padding: '6px' }}
         >
           <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor">
             {open ? (
-              <>
-                <path strokeLinecap="round" strokeWidth={1.5} d="M4 4l14 14M18 4L4 18" />
-              </>
+              <path strokeLinecap="round" strokeWidth={1.5} d="M4 4l14 14M18 4L4 18" />
             ) : (
-              <>
-                <path strokeLinecap="round" strokeWidth={1.5} d="M3 6h16M3 11h16M3 16h16" />
-              </>
+              <path strokeLinecap="round" strokeWidth={1.5} d="M3 6h16M3 11h16M3 16h16" />
             )}
           </svg>
         </button>
@@ -166,7 +166,7 @@ export default function Navbar() {
                   fontSize: '0.85rem',
                   letterSpacing: '0.08em',
                   textTransform: 'uppercase',
-                  color: active ? 'var(--accent)' : 'var(--text-faint)',
+                  color: active ? 'var(--accent)' : 'var(--white)',
                   textDecoration: 'none',
                   borderBottom: '1px solid var(--border-dark)',
                   display: 'block',
@@ -185,7 +185,7 @@ export default function Navbar() {
                 flex: 1,
                 background: 'transparent',
                 border: 'none',
-                borderBottom: '1px solid var(--text-faint)',
+                borderBottom: '2px solid var(--accent)',
                 color: 'var(--white)',
                 fontSize: '0.8rem',
                 padding: '6px 0',
@@ -196,13 +196,14 @@ export default function Navbar() {
               type="submit"
               style={{
                 background: 'var(--accent)',
-                color: 'var(--white)',
+                color: 'var(--text)',
                 border: 'none',
                 cursor: 'pointer',
                 padding: '6px 14px',
-                fontSize: '0.72rem',
-                letterSpacing: '0.08em',
+                fontSize: '0.7rem',
+                letterSpacing: '0.1em',
                 textTransform: 'uppercase',
+                fontWeight: 700,
               }}
             >
               Ir
