@@ -13,7 +13,9 @@
       "Bash(Copy-Item \"app/admin/layout.tsx\" \"app/admin/\\(dashboard\\)/layout.tsx\")",
       "Bash(Remove-Item \"app/admin/layout.tsx\")",
       "Skill(frontend-design)",
-      "Bash(npm run *)"
+      "Bash(npm run *)",
+      "PowerShell(Get-ChildItem -Path \"C:\\\\Users\\\\Lautaro\\\\Documents\\\\Programacion\\\\devsoul\\\\rodo-bulacio-wiki\" -Recurse -Exclude \"node_modules\" | Where-Object { $_.FullName -notmatch \"node_modules\" } | Select-Object FullName)",
+      "PowerShell(Get-ChildItem -Path \"C:\\\\Users\\\\Lautaro\\\\Documents\\\\Programacion\\\\devsoul\\\\rodo-bulacio-wiki\" | Where-Object { $_.Name -ne \"node_modules\" } | Select-Object Name, PSIsContainer)"
     ]
   }
 }

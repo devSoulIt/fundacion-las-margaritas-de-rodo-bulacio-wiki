@@ -6,54 +6,54 @@ const SECCIONES = [
     titulo: 'Rodolfo Bulacio',
     href: '/wiki/rodolfo-bulacio',
     descripcion: 'Artista visual, performer y referente cultural tucumano cuya obra desafió los límites de su época.',
-    bg: '#f5c500',
-    text: '#1a0512',
-    linkColor: '#3d0a1c',
+    bg: '#e8b6c3',
+    text: '#232323',
+    linkColor: '#35576b',
   },
   {
     num: '02',
     titulo: 'Fundación Las Margaritas',
     href: '/wiki/fundacion-las-margaritas',
     descripcion: 'Nacida del amor y la memoria, la fundación preserva y difunde el legado artístico de Rodolfo.',
-    bg: '#7c4dab',
-    text: '#ffffff',
-    linkColor: '#f5c500',
+    bg: '#9dd7e8',
+    text: '#232323',
+    linkColor: '#35576b',
   },
   {
     num: '03',
     titulo: 'Sala de Arte Contemporáneo',
     href: '/wiki/sala-de-arte',
     descripcion: 'Espacio en el Mercado Cultural de Monteros que alberga la muestra permanente de Rodolfo Bulacio.',
-    bg: '#d4551a',
-    text: '#ffffff',
-    linkColor: '#f5c500',
+    bg: '#f2c94c',
+    text: '#232323',
+    linkColor: '#35576b',
   },
   {
     num: '04',
     titulo: 'Galería de Artistas',
     href: '/galeria',
     descripcion: 'Artistas que forman parte de la propuesta expositiva de la Fundación Las Margaritas.',
-    bg: '#4ab8b5',
-    text: '#1a0512',
-    linkColor: '#3d0a1c',
+    bg: '#8fcfc9',
+    text: '#232323',
+    linkColor: '#35576b',
   },
   {
     num: '05',
     titulo: 'Archivo y Memoria',
     href: '/wiki/archivo-y-memoria',
     descripcion: 'Catálogos, publicaciones, fotografías históricas y material audiovisual del legado de Rodolfo.',
-    bg: '#3d0a1c',
+    bg: '#35576b',
     text: '#ffffff',
-    linkColor: '#f5c500',
+    linkColor: '#f2c94c',
   },
   {
     num: '06',
     titulo: 'Contacto y Redes',
     href: '/contacto',
     descripcion: 'Encontrá la Sala en el Mercado Cultural de Monteros y seguinos en nuestras redes.',
-    bg: '#c53060',
-    text: '#ffffff',
-    linkColor: '#f5c500',
+    bg: '#e8b6c3',
+    text: '#232323',
+    linkColor: '#35576b',
   },
 ]
 
@@ -121,7 +121,7 @@ export default function HomePage() {
                 fontSize: '0.62rem',
                 letterSpacing: '0.22em',
                 textTransform: 'uppercase',
-                color: 'rgba(26,5,18,0.55)',
+                color: 'rgba(35,35,35,0.55)',
                 fontWeight: 600,
               }}
             >
@@ -183,10 +183,10 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* Violet block — subtitle */}
+          {/* Pink block — subtitle */}
           <div
             style={{
-              background: 'var(--accent-violet)',
+              background: 'var(--accent-pink)',
               padding: 'clamp(3.5rem, 6vw, 5.5rem) clamp(2rem, 4vw, 3.5rem)',
               display: 'flex',
               flexDirection: 'column',
@@ -199,7 +199,7 @@ export default function HomePage() {
                 fontSize: '0.6rem',
                 letterSpacing: '0.22em',
                 textTransform: 'uppercase',
-                color: 'rgba(255,255,255,0.4)',
+                color: 'rgba(53,87,107,0.5)',
                 fontWeight: 500,
               }}
             >
@@ -211,7 +211,7 @@ export default function HomePage() {
                   fontFamily: 'var(--font-playfair), serif',
                   fontSize: 'clamp(1.6rem, 3.5vw, 2.4rem)',
                   fontWeight: 800,
-                  color: 'white',
+                  color: '#35576b',
                   lineHeight: 1.15,
                   letterSpacing: '-0.02em',
                   marginBottom: '1.25rem',
@@ -222,7 +222,7 @@ export default function HomePage() {
               <p
                 style={{
                   fontSize: '0.82rem',
-                  color: 'rgba(255,255,255,0.62)',
+                  color: 'rgba(53,87,107,0.65)',
                   lineHeight: 1.75,
                   maxWidth: '220px',
                 }}
@@ -233,10 +233,10 @@ export default function HomePage() {
           </div>
         </div>
 
-        {/* Orange info bar */}
+        {/* Green info bar */}
         <div
           style={{
-            background: 'var(--accent-orange)',
+            background: 'var(--accent-green)',
             padding: '1.15rem clamp(2rem, 6vw, 5rem)',
             position: 'relative',
             zIndex: 2,
@@ -247,7 +247,7 @@ export default function HomePage() {
               fontSize: '0.66rem',
               letterSpacing: '0.2em',
               textTransform: 'uppercase',
-              color: 'rgba(255,255,255,0.92)',
+              color: 'rgba(53,87,107,0.85)',
               fontWeight: 600,
             }}
           >
@@ -387,7 +387,7 @@ export default function HomePage() {
       {/* Quote */}
       <section
         style={{
-          background: 'var(--accent-violet)',
+          background: 'var(--accent-pink)',
           padding: '6rem 1.5rem',
           position: 'relative',
           overflow: 'hidden',
@@ -402,7 +402,7 @@ export default function HomePage() {
             fontFamily: 'var(--font-playfair), serif',
             fontSize: 'clamp(8rem, 20vw, 16rem)',
             fontWeight: 900,
-            color: 'rgba(255,255,255,0.06)',
+            color: 'rgba(255,255,255,0.25)',
             lineHeight: 1,
             userSelect: 'none',
             pointerEvents: 'none',
@@ -425,7 +425,7 @@ export default function HomePage() {
               fontSize: 'clamp(1.4rem, 3vw, 2rem)',
               fontStyle: 'italic',
               fontWeight: 600,
-              color: 'white',
+              color: 'var(--text)',
               lineHeight: 1.55,
               letterSpacing: '-0.01em',
             }}
@@ -438,7 +438,7 @@ export default function HomePage() {
               fontSize: '0.66rem',
               letterSpacing: '0.18em',
               textTransform: 'uppercase',
-              color: 'rgba(255,255,255,0.42)',
+              color: 'rgba(35,35,35,0.55)',
             }}
           >
             — Fundación Las Margaritas de Rodolfo Bulacio

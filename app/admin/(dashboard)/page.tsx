@@ -23,7 +23,7 @@ export default async function AdminDashboard() {
         <p style={{ fontSize: '0.65rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--a-accent)', marginBottom: '0.4rem' }}>
           Resumen
         </p>
-        <h1 style={{ fontFamily: 'var(--font-cormorant), serif', fontSize: '2rem', fontWeight: 400, fontStyle: 'italic', color: 'var(--a-text)' }}>
+        <h1 style={{ fontFamily: 'var(--font-playfair), serif', fontSize: '2rem', fontWeight: 400, fontStyle: 'italic', color: 'var(--a-text)' }}>
           Dashboard
         </h1>
       </div>
@@ -46,7 +46,7 @@ export default async function AdminDashboard() {
               display: 'block',
             }}
           >
-            <p style={{ fontFamily: 'var(--font-cormorant), serif', fontSize: '3rem', fontWeight: 300, color: 'var(--a-accent)', lineHeight: 1 }}>
+            <p style={{ fontFamily: 'var(--font-playfair), serif', fontSize: '3rem', fontWeight: 300, color: 'var(--a-accent)', lineHeight: 1 }}>
               {stat.count}
             </p>
             <p style={{ fontSize: '0.7rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--a-text-muted)', marginTop: '0.5rem' }}>

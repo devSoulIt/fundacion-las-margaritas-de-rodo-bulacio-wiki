@@ -74,7 +74,7 @@ export default function MediaPicker({ onSelect, onClose }: Props) {
           }}
         >
           <div>
-            <p style={{ fontFamily: 'var(--font-cormorant), serif', fontSize: '1.2rem', fontStyle: 'italic', color: 'var(--a-accent)' }}>
+            <p style={{ fontFamily: 'var(--font-playfair), serif', fontSize: '1.2rem', fontStyle: 'italic', color: 'var(--a-accent)' }}>
               Biblioteca de medios
             </p>
             <p style={{ fontSize: '0.68rem', letterSpacing: '0.1em', color: 'var(--a-text-muted)', marginTop: '2px' }}>
@@ -128,13 +128,13 @@ export default function MediaPicker({ onSelect, onClose }: Props) {
         {/* Grid */}
         <div style={{ flex: 1, overflowY: 'auto', padding: '1rem 1.25rem' }}>
           {loading && (
-            <p style={{ textAlign: 'center', padding: '2rem', color: 'var(--a-text-muted)', fontSize: '0.85rem', fontStyle: 'italic', fontFamily: 'var(--font-cormorant), serif' }}>
+            <p style={{ textAlign: 'center', padding: '2rem', color: 'var(--a-text-muted)', fontSize: '0.85rem', fontStyle: 'italic', fontFamily: 'var(--font-playfair), serif' }}>
               Cargando archivos…
             </p>
           )}
 
           {!loading && filtered.length === 0 && (
-            <p style={{ textAlign: 'center', padding: '2rem', color: 'var(--a-text-muted)', fontSize: '0.85rem', fontStyle: 'italic', fontFamily: 'var(--font-cormorant), serif' }}>
+            <p style={{ textAlign: 'center', padding: '2rem', color: 'var(--a-text-muted)', fontSize: '0.85rem', fontStyle: 'italic', fontFamily: 'var(--font-playfair), serif' }}>
               No hay archivos en esta categoría.
             </p>
           )}
@@ -162,7 +162,7 @@ export default function MediaPicker({ onSelect, onClose }: Props) {
                   textAlign: 'left',
                   transition: 'background 0.15s',
                 }}
-                onMouseEnter={e => (e.currentTarget.style.background = 'rgba(201,149,76,0.1)')}
+                onMouseEnter={e => (e.currentTarget.style.background = 'rgba(245,197,0,0.1)')}
                 onMouseLeave={e => (e.currentTarget.style.background = 'var(--a-bg)')}
               >
                 {item.tipo === 'image' ? (
@@ -179,7 +179,7 @@ export default function MediaPicker({ onSelect, onClose }: Props) {
                       justifyContent: 'center',
                     }}
                   >
-                    <span style={{ fontFamily: 'var(--font-cormorant), serif', fontSize: '1.5rem', color: 'var(--a-text-muted)', fontStyle: 'italic' }}>
+                    <span style={{ fontFamily: 'var(--font-playfair), serif', fontSize: '1.5rem', color: 'var(--a-text-muted)', fontStyle: 'italic' }}>
                       {item.tipo === 'video' ? 'vid' : 'doc'}
                     </span>
                   </div>

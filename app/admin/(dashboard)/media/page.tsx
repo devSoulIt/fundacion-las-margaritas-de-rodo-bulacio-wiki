@@ -18,7 +18,7 @@ export default async function AdminMediaPage() {
         <p style={{ fontSize: '0.65rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--a-accent)', marginBottom: '0.4rem' }}>
           Archivos
         </p>
-        <h1 style={{ fontFamily: 'var(--font-cormorant), serif', fontSize: '2rem', fontWeight: 400, fontStyle: 'italic', color: 'var(--a-text)' }}>
+        <h1 style={{ fontFamily: 'var(--font-playfair), serif', fontSize: '2rem', fontWeight: 400, fontStyle: 'italic', color: 'var(--a-text)' }}>
           Biblioteca de medios
         </h1>
       </div>
@@ -38,7 +38,7 @@ export default async function AdminMediaPage() {
       </div>
 
       {archivos?.length === 0 && (
-        <p style={{ padding: '3rem', textAlign: 'center', fontSize: '0.85rem', color: 'var(--a-text-muted)', fontStyle: 'italic', fontFamily: 'var(--font-cormorant), serif' }}>
+        <p style={{ padding: '3rem', textAlign: 'center', fontSize: '0.85rem', color: 'var(--a-text-muted)', fontStyle: 'italic', fontFamily: 'var(--font-playfair), serif' }}>
           No hay archivos subidos todavía.
         </p>
       )}
@@ -72,7 +72,7 @@ export default async function AdminMediaPage() {
               >
                 <span
                   style={{
-                    fontFamily: 'var(--font-cormorant), serif',
+                    fontFamily: 'var(--font-playfair), serif',
                     fontSize: '2rem',
                     color: 'var(--a-text-muted)',
                     fontStyle: 'italic',

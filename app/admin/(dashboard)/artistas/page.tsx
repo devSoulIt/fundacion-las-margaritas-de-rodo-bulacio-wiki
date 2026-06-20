@@ -18,7 +18,7 @@ export default async function AdminArtistasPage() {
           <p style={{ fontSize: '0.65rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--a-accent)', marginBottom: '0.4rem' }}>
             Galería
           </p>
-          <h1 style={{ fontFamily: 'var(--font-cormorant), serif', fontSize: '2rem', fontWeight: 400, fontStyle: 'italic', color: 'var(--a-text)' }}>
+          <h1 style={{ fontFamily: 'var(--font-playfair), serif', fontSize: '2rem', fontWeight: 400, fontStyle: 'italic', color: 'var(--a-text)' }}>
             Artistas
           </h1>
         </div>
@@ -29,7 +29,7 @@ export default async function AdminArtistasPage() {
 
       <div style={{ background: 'var(--a-surface)', border: '1px solid var(--a-border)' }}>
         {artistas?.length === 0 && (
-          <p style={{ padding: '3rem', textAlign: 'center', fontSize: '0.85rem', color: 'var(--a-text-muted)', fontStyle: 'italic', fontFamily: 'var(--font-cormorant), serif' }}>
+          <p style={{ padding: '3rem', textAlign: 'center', fontSize: '0.85rem', color: 'var(--a-text-muted)', fontStyle: 'italic', fontFamily: 'var(--font-playfair), serif' }}>
             No hay artistas todavía.
           </p>
         )}
