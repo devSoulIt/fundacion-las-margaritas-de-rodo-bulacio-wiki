@@ -2,23 +2,25 @@
 @plugin "@tailwindcss/typography";
 
 :root {
-  --bg: #f7bfcc;
-  --bg-subtle: #eea8b8;
-  --bg-dark: #3d0a1c;
-  --text: #1a0512;
-  --text-muted: #6a2040;
-  --text-faint: #b06080;
-  --accent: #f5c500;
-  --accent-dark: #d4a800;
-  --accent-violet: #7c4dab;
-  --accent-violet-dark: #5e3882;
-  --accent-orange: #d4551a;
-  --accent-orange-dark: #b04010;
-  --accent-teal: #4ab8b5;
-  --accent-teal-dark: #359896;
-  --border: #e898b2;
-  --border-dark: #5a1530;
-  --white: #fff5f8;
+  --bg: #ffffff;
+  --bg-subtle: #f9f2f4;
+  --bg-dark: #35576b;
+  --text: #232323;
+  --text-muted: #5c6a73;
+  --text-faint: #8d9aa3;
+  --accent: #f2c94c;
+  --accent-dark: #d4ab3a;
+  --accent-pink: #e8b6c3;
+  --accent-pink-dark: #d89bab;
+  --accent-green: #79b88a;
+  --accent-green-dark: #5f9e72;
+  --accent-celeste: #9dd7e8;
+  --accent-celeste-dark: #76c1d8;
+  --accent-teal: #8fcfc9;
+  --accent-teal-dark: #6bb8b2;
+  --border: #d9e8ee;
+  --border-dark: #35576b;
+  --white: #ffffff;
 }
 
 @theme inline {
@@ -48,10 +50,14 @@ body::before {
   content: '';
   position: fixed;
   inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='70' height='70' viewBox='0 0 70 70'%3E%3Cg transform='translate(35 35)'%3E%3Cellipse rx='2.5' ry='8' fill='white' opacity='0.3'/%3E%3Cellipse rx='2.5' ry='8' transform='rotate(45)' fill='white' opacity='0.3'/%3E%3Cellipse rx='2.5' ry='8' transform='rotate(90)' fill='white' opacity='0.3'/%3E%3Cellipse rx='2.5' ry='8' transform='rotate(135)' fill='white' opacity='0.3'/%3E%3Ccircle r='3.5' fill='%23f5c500' opacity='0.4'/%3E%3C/g%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg transform='translate(40 40)'%3E%3Cellipse rx='2.5' ry='8' fill='%23e8b6c3' opacity='0.7'/%3E%3Cellipse rx='2.5' ry='8' transform='rotate(45)' fill='%23e8b6c3' opacity='0.7'/%3E%3Cellipse rx='2.5' ry='8' transform='rotate(90)' fill='%23e8b6c3' opacity='0.7'/%3E%3Cellipse rx='2.5' ry='8' transform='rotate(135)' fill='%23e8b6c3' opacity='0.7'/%3E%3Ccircle r='3.5' fill='%23f2c94c' opacity='0.8'/%3E%3C/g%3E%3C/svg%3E");
   pointer-events: none;
-  z-index: 9999;
-  opacity: 0.45;
+  z-index: 0;
+  opacity: 0.14;
+}
+
+body:has(.admin-root)::before {
+  display: none;
 }
 
 ::selection {
@@ -110,7 +116,7 @@ body::before {
   margin-bottom: 0.4em;
 }
 .wiki-content a {
-  color: var(--accent-violet);
+  color: var(--accent-celeste-dark);
   text-decoration: underline;
   text-underline-offset: 3px;
 }
@@ -170,17 +176,17 @@ body::before {
 
 /* ─── Admin panel ────────────────────────────────────── */
 .admin-root {
-  --a-bg: #0f0f0d;
-  --a-surface: #1a1a16;
-  --a-surface-2: #222220;
-  --a-border: #2a2a24;
-  --a-text: #d4cfc7;
-  --a-text-muted: #6a6860;
-  --a-text-faint: #3a3830;
-  --a-accent: #c9954c;
-  --a-accent-dark: #a67a38;
+  --a-bg: #ffffff;
+  --a-surface: #f9f2f4;
+  --a-surface-2: #f0e8ec;
+  --a-border: #d9e8ee;
+  --a-text: #232323;
+  --a-text-muted: #5c6a73;
+  --a-text-faint: #8d9aa3;
+  --a-accent: #f2c94c;
+  --a-accent-dark: #d4ab3a;
   --a-danger: #c0503a;
-  --a-success: #6aaa64;
+  --a-success: #79b88a;
   background: var(--a-bg);
   color: var(--a-text);
   font-family: var(--font-dm-sans), sans-serif;
@@ -213,7 +219,7 @@ body::before {
 
 .admin-btn {
   background: var(--a-accent);
-  color: #fff;
+  color: var(--a-text);
   border: none;
   cursor: pointer;
   font-family: var(--font-dm-sans), sans-serif;
@@ -274,13 +280,13 @@ body::before {
 .a-edit-link:hover { color: var(--a-accent) !important; border-color: var(--a-accent) !important; }
 
 .a-sidebar-link { transition: color 0.15s, background 0.15s; }
-.a-sidebar-link:not(.active):hover { color: var(--a-text) !important; background: rgba(255,255,255,0.03) !important; }
+.a-sidebar-link:not(.active):hover { color: var(--a-text) !important; background: rgba(91,184,232,0.1) !important; }
 
 .a-signout-btn { transition: color 0.15s; }
 .a-signout-btn:hover { color: var(--a-danger) !important; }
 
 .a-media-btn { transition: background 0.15s; }
-.a-media-btn:hover { background: rgba(201,149,76,0.1) !important; }
+.a-media-btn:hover { background: rgba(245,197,0,0.1) !important; }
 
 /* Gallery hover */
 .gallery-card:hover .gallery-overlay {

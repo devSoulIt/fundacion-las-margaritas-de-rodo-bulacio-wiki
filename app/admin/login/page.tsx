@@ -36,7 +36,7 @@ export default function LoginPage() {
         />
         <p
           style={{
-            fontFamily: 'var(--font-cormorant), serif',
+            fontFamily: 'var(--font-playfair), serif',
             fontSize: '1.5rem',
             fontStyle: 'italic',
             fontWeight: 300,

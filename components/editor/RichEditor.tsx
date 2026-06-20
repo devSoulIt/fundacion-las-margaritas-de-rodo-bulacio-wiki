@@ -193,7 +193,7 @@ export default function RichEditor({ name, defaultValue = '', placeholder = 'Esc
               }
               .rich-editor-area p { margin-bottom: 1em; }
               .rich-editor-area h1, .rich-editor-area h2, .rich-editor-area h3 {
-                font-family: var(--font-cormorant), serif;
+                font-family: var(--font-playfair), serif;
                 color: var(--a-text);
                 margin-top: 1.5em;
                 margin-bottom: 0.5em;
@@ -242,7 +242,7 @@ export default function RichEditor({ name, defaultValue = '', placeholder = 'Esc
                 style={{
                   color: 'var(--text-muted)',
                   fontStyle: 'italic',
-                  fontFamily: 'var(--font-cormorant), serif',
+                  fontFamily: 'var(--font-playfair), serif',
                   fontSize: '1rem',
                 }}
               >
@@ -276,10 +276,10 @@ function ToolBtn({
         background: active
           ? 'var(--a-accent)'
           : highlight
-          ? 'rgba(201,149,76,0.15)'
+          ? 'rgba(245,197,0,0.15)'
           : 'transparent',
-        border: highlight ? '1px solid rgba(201,149,76,0.4)' : '1px solid transparent',
-        color: active ? '#fff' : highlight ? 'var(--a-accent)' : 'var(--a-text-muted)',
+        border: highlight ? '1px solid rgba(245,197,0,0.4)' : '1px solid transparent',
+        color: active ? 'var(--a-text)' : highlight ? 'var(--a-text)' : 'var(--a-text-muted)',
         cursor: 'pointer',
         fontSize: '0.72rem',
         fontFamily: 'var(--font-dm-sans), sans-serif',
@@ -290,13 +290,13 @@ function ToolBtn({
       }}
       onMouseEnter={e => {
         if (!active) {
-          e.currentTarget.style.background = 'rgba(201,149,76,0.15)'
+          e.currentTarget.style.background = 'rgba(245,197,0,0.15)'
           e.currentTarget.style.color = 'var(--a-accent)'
         }
       }}
       onMouseLeave={e => {
         if (!active) {
-          e.currentTarget.style.background = highlight ? 'rgba(201,149,76,0.15)' : 'transparent'
+          e.currentTarget.style.background = highlight ? 'rgba(245,197,0,0.15)' : 'transparent'
           e.currentTarget.style.color = highlight ? 'var(--a-accent)' : 'var(--a-text-muted)'
         }
       }}

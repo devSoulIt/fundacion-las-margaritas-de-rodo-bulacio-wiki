@@ -68,7 +68,7 @@ export default function Navbar() {
             return (
               <span key={item.href} className="flex items-center">
                 {i > 0 && (
-                  <span style={{ width: '1px', height: '12px', background: 'var(--accent-violet)', opacity: 0.35, margin: '0 2px', display: 'inline-block' }} />
+                  <span style={{ width: '1px', height: '12px', background: 'var(--accent-celeste)', opacity: 0.4, margin: '0 2px', display: 'inline-block' }} />
                 )}
                 <Link
                   href={item.href}

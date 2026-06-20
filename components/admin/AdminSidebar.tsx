@@ -35,14 +35,18 @@ export default function AdminSidebar() {
       >
         <p
           style={{
-            fontFamily: 'var(--font-cormorant), serif',
+            fontFamily: 'var(--font-playfair), serif',
             fontSize: '1.1rem',
             fontStyle: 'italic',
-            fontWeight: 400,
-            color: 'var(--a-accent)',
+            fontWeight: 700,
+            color: 'var(--a-text)',
             marginBottom: '2px',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '0.4rem',
           }}
         >
+          <span style={{ color: 'var(--a-accent)', fontSize: '0.9rem' }}>✿</span>
           Las Margaritas
         </p>
         <p
@@ -76,15 +80,16 @@ export default function AdminSidebar() {
                 fontSize: '0.8rem',
                 letterSpacing: '0.04em',
                 textDecoration: 'none',
-                color: active ? 'var(--a-accent)' : 'var(--a-text-muted)',
-                background: active ? 'rgba(201,149,76,0.08)' : 'transparent',
+                color: active ? 'var(--a-text)' : 'var(--a-text-muted)',
+                background: active ? 'rgba(245,197,0,0.15)' : 'transparent',
                 borderLeft: active ? '2px solid var(--a-accent)' : '2px solid transparent',
+                fontWeight: active ? 600 : 400,
                 transition: 'color 0.15s, background 0.15s',
               }}
               onMouseEnter={e => {
                 if (!active) {
                   e.currentTarget.style.color = 'var(--a-text)'
-                  e.currentTarget.style.background = 'rgba(255,255,255,0.03)'
+                  e.currentTarget.style.background = 'rgba(91,184,232,0.1)'
                 }
               }}
               onMouseLeave={e => {
