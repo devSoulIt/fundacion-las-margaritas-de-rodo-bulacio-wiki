@@ -1,4 +1,6 @@
 import Link from 'next/link'
+import Image from 'next/image'
+import heroBg from '../backgroundhero.webp'
 
 const SECCIONES = [
   {
@@ -42,7 +44,7 @@ const SECCIONES = [
     titulo: 'Archivo y Memoria',
     href: '/wiki/archivo-y-memoria',
     descripcion: 'Catálogos, publicaciones, fotografías históricas y material audiovisual del legado de Rodolfo.',
-    bg: '#35576b',
+    bg: '#B9DCD5  ',
     text: '#ffffff',
     linkColor: '#f2c94c',
   },
@@ -51,203 +53,234 @@ const SECCIONES = [
     titulo: 'Contacto y Redes',
     href: '/contacto',
     descripcion: 'Encontrá la Sala en el Mercado Cultural de Monteros y seguinos en nuestras redes.',
-    bg: '#e8b6c3',
+    bg: '#E8BEC9',
     text: '#232323',
     linkColor: '#35576b',
   },
 ]
 
+/**
+ * SVG daisy — 12 petals with bezier curves for a natural look.
+ * White petals with subtle border, three-tone yellow center.
+ */
+function Daisy({
+  size = 60,
+  rotate = 0,
+  opacity = 1,
+  style,
+}: {
+  size?: number
+  rotate?: number
+  opacity?: number
+  style?: React.CSSProperties
+}) {
+  const r = size / 2
+  // Petal geometry (all relative to center 0,0)
+  const base  = r * 0.30  // petal base radius (where it meets center)
+  const tip   = r * 0.92  // petal tip radius (near edge)
+  const hw    = r * 0.185 // half-width at the widest point
+  const cp1y  = r * 0.44  // bezier control point 1 (depth)
+  const cp2y  = r * 0.76  // bezier control point 2 (depth)
+
+  // Petal path: smooth oval from -base to -tip (pointing up in local coords)
+  const d = [
+    `M 0,${-base}`,
+    `C  ${hw},${-cp1y}  ${hw},${-cp2y}  0,${-tip}`,
+    `C ${-hw},${-cp2y} ${-hw},${-cp1y}  0,${-base}`,
+    'Z',
+  ].join(' ')
+
+  const centerR = r * 0.21
+
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox={`0 0 ${size} ${size}`}
+      aria-hidden
+      style={{ transform: `rotate(${rotate}deg)`, opacity, display: 'block', flexShrink: 0, ...style }}
+    >
+      <g transform={`translate(${r} ${r})`}>
+        {Array.from({ length: 12 }).map((_, i) => (
+          <path
+            key={i}
+            d={d}
+            fill="white"
+            stroke="rgba(53,87,107,0.13)"
+            strokeWidth="0.5"
+            transform={`rotate(${i * 30})`}
+          />
+        ))}
+        {/* Three-tone center for depth */}
+        <circle r={centerR}           fill="#f2c94c" />
+        <circle r={centerR * 0.68}    fill="#d4ab3a" />
+        <circle r={centerR * 0.36}    fill="#b8870a" />
+      </g>
+    </svg>
+  )
+}
+
 export default function HomePage() {
   return (
     <div>
-      {/* Hero */}
+      {/* ═══════════════════════════════════════════════════
+          HERO
+      ═══════════════════════════════════════════════════ */}
       <section
         style={{
-          background: 'var(--bg)',
           position: 'relative',
           overflow: 'hidden',
+          minHeight: 'clamp(480px, 62vw, 680px)',
+          display: 'flex',
+          flexDirection: 'column',
+          background: 'var(--bg-dark)',
         }}
       >
-        {/* Scattered daisy decorations on the pink area */}
-        <span
-          aria-hidden
-          style={{
-            position: 'absolute',
-            top: '1.5rem',
-            right: '2.5rem',
-            fontSize: '2.5rem',
-            opacity: 0.22,
-            transform: 'rotate(12deg)',
-            pointerEvents: 'none',
-            zIndex: 1,
-            lineHeight: 1,
-          }}
-        >
-          ✿
-        </span>
-        <span
-          aria-hidden
-          style={{
-            position: 'absolute',
-            bottom: '6rem',
-            left: '1.5rem',
-            fontSize: '1.8rem',
-            opacity: 0.18,
-            transform: 'rotate(-20deg)',
-            pointerEvents: 'none',
-            zIndex: 1,
-            lineHeight: 1,
-          }}
-        >
-          ✿
-        </span>
+        {/* ── Background image ── */}
+        <Image
+          src={heroBg}
+          alt=""
+          fill
+          priority
+          style={{ objectFit: 'contain', objectPosition: 'right top' }}
+        />
 
-        {/* Color block structure */}
-        <div className="flex flex-col md:flex-row animate-fade-up" style={{ position: 'relative', zIndex: 2 }}>
-          {/* Yellow block — main title */}
-          <div
+      
+
+        {/* ── Hero content ── */}
+        <div
+          className="animate-fade-up"
+          style={{
+            position: 'relative',
+            zIndex: 2,
+            flex: 1,
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'flex-end',
+            padding: 'clamp(5rem, 8vw, 8rem) clamp(2rem, 6vw, 5rem) clamp(3.5rem, 5vw, 5.5rem)',
+            maxWidth: '700px',
+          }}
+        >
+          <p
             style={{
-              background: 'var(--accent)',
-              padding: 'clamp(4rem, 7vw, 6.5rem) clamp(2rem, 6vw, 5rem)',
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'space-between',
-              flex: 1,
-              minHeight: 'clamp(360px, 55vw, 560px)',
+              fontSize: '0.58rem',
+              letterSpacing: '0.24em',
+              textTransform: 'uppercase',
+              color: 'rgba(255,255,255)',
+              fontWeight: 600,
+              marginBottom: '1.6rem',
             }}
           >
-            <p
+            Fundación · Mercado Cultural de Monteros
+          </p>
+
+          <p
+            style={{
+              fontSize: '0.65rem',
+              letterSpacing: '0.2em',
+              textTransform: 'uppercase',
+              color: 'rgba(157,215,232,0.95)',
+              fontWeight: 700,
+              marginBottom: '0.5rem',
+            }}
+          >
+            Sala de Exposiciones
+          </p>
+
+          <h1
+            style={{
+              fontFamily: 'var(--font-playfair), serif',
+              fontSize: 'clamp(3.6rem, 9vw, 8rem)',
+              fontWeight: 900,
+              lineHeight: 0.9,
+              color: '#ffffff',
+              letterSpacing: '-0.03em',
+              marginBottom: '0.6rem',
+            }}
+          >
+            Las<br />Margaritas
+          </h1>
+
+          <p
+            style={{
+              fontFamily: 'var(--font-playfair), serif',
+              fontSize: 'clamp(1.25rem, 2.8vw, 1.9rem)',
+              fontWeight: 700,
+              color: 'var(--accent-celeste)',
+              lineHeight: 1.15,
+              letterSpacing: '-0.02em',
+              marginBottom: '1rem',
+            }}
+          >
+            de Rodolfo Bulacio
+          </p>
+
+          <p
+            style={{
+              fontSize: '0.88rem',
+              color: 'rgba(255,255,255,0.58)',
+              lineHeight: 1.75,
+              maxWidth: '380px',
+              marginBottom: '2.5rem',
+            }}
+          >
+            Artista visual, performer y referente cultural del norte argentino.
+          </p>
+
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem' }}>
+            <Link
+              href="/wiki/rodolfo-bulacio"
+              className="btn-primary-hero"
               style={{
-                fontSize: '0.62rem',
-                letterSpacing: '0.22em',
+                background: '#ffffff',
+                color: 'var(--bg-dark)',
+                padding: '13px 30px',
+                fontSize: '0.67rem',
+                letterSpacing: '0.14em',
                 textTransform: 'uppercase',
-                color: 'rgba(35,35,35,0.55)',
+                textDecoration: 'none',
+                fontWeight: 700,
+                display: 'inline-block',
+              }}
+            >
+              Conocer a Rodolfo
+            </Link>
+            <Link
+              href="/galeria"
+              className="btn-outline-hero"
+              style={{
+                border: '2px solid rgba(255,255,255,0.65)',
+                color: '#ffffff',
+                padding: '13px 30px',
+                fontSize: '0.67rem',
+                letterSpacing: '0.14em',
+                textTransform: 'uppercase',
+                textDecoration: 'none',
                 fontWeight: 600,
+                display: 'inline-block',
+                background: 'transparent',
               }}
             >
-              Fundación · Mercado Cultural de Monteros
-            </p>
-
-            <div>
-              <h1
-                style={{
-                  fontFamily: 'var(--font-playfair), serif',
-                  fontSize: 'clamp(3.5rem, 8.5vw, 7.5rem)',
-                  fontWeight: 900,
-                  lineHeight: 0.92,
-                  color: 'var(--text)',
-                  letterSpacing: '-0.03em',
-                  marginBottom: '2.75rem',
-                }}
-              >
-                Las<br />Margaritas
-              </h1>
-
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem' }}>
-                <Link
-                  href="/wiki/rodolfo-bulacio"
-                  className="btn-primary-hero"
-                  style={{
-                    background: 'var(--text)',
-                    color: 'var(--accent)',
-                    padding: '13px 30px',
-                    fontSize: '0.68rem',
-                    letterSpacing: '0.14em',
-                    textTransform: 'uppercase',
-                    textDecoration: 'none',
-                    fontWeight: 700,
-                    display: 'inline-block',
-                  }}
-                >
-                  Conocer a Rodolfo
-                </Link>
-                <Link
-                  href="/galeria"
-                  className="btn-outline-hero"
-                  style={{
-                    border: '2px solid var(--text)',
-                    color: 'var(--text)',
-                    padding: '13px 30px',
-                    fontSize: '0.68rem',
-                    letterSpacing: '0.14em',
-                    textTransform: 'uppercase',
-                    textDecoration: 'none',
-                    fontWeight: 600,
-                    display: 'inline-block',
-                    background: 'transparent',
-                  }}
-                >
-                  Galería de Artistas
-                </Link>
-              </div>
-            </div>
-          </div>
-
-          {/* Pink block — subtitle */}
-          <div
-            style={{
-              background: 'var(--accent-pink)',
-              padding: 'clamp(3.5rem, 6vw, 5.5rem) clamp(2rem, 4vw, 3.5rem)',
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'space-between',
-            }}
-            className="md:w-[300px]"
-          >
-            <p
-              style={{
-                fontSize: '0.6rem',
-                letterSpacing: '0.22em',
-                textTransform: 'uppercase',
-                color: 'rgba(53,87,107,0.5)',
-                fontWeight: 500,
-              }}
-            >
-              Wiki / Archivo
-            </p>
-            <div>
-              <p
-                style={{
-                  fontFamily: 'var(--font-playfair), serif',
-                  fontSize: 'clamp(1.6rem, 3.5vw, 2.4rem)',
-                  fontWeight: 800,
-                  color: '#35576b',
-                  lineHeight: 1.15,
-                  letterSpacing: '-0.02em',
-                  marginBottom: '1.25rem',
-                }}
-              >
-                de Rodolfo<br />Bulacio
-              </p>
-              <p
-                style={{
-                  fontSize: '0.82rem',
-                  color: 'rgba(53,87,107,0.65)',
-                  lineHeight: 1.75,
-                  maxWidth: '220px',
-                }}
-              >
-                Artista visual, performer y referente cultural del norte argentino.
-              </p>
-            </div>
+              Galería de Artistas
+            </Link>
           </div>
         </div>
 
-        {/* Green info bar */}
+        {/* ── Green info bar ── */}
         <div
           style={{
             background: 'var(--accent-green)',
-            padding: '1.15rem clamp(2rem, 6vw, 5rem)',
+            padding: '1.1rem clamp(2rem, 6vw, 5rem)',
             position: 'relative',
             zIndex: 2,
           }}
         >
           <p
             style={{
-              fontSize: '0.66rem',
+              fontSize: '0.64rem',
               letterSpacing: '0.2em',
               textTransform: 'uppercase',
-              color: 'rgba(53,87,107,0.85)',
+              color: 'rgba(255,255,255)',
               fontWeight: 600,
             }}
           >
@@ -256,7 +289,9 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Section header */}
+      {/* ═══════════════════════════════════════════════════
+          SECTION HEADER
+      ═══════════════════════════════════════════════════ */}
       <section style={{ background: 'var(--bg)', padding: '3.5rem 1.5rem 2rem' }}>
         <div className="max-w-7xl mx-auto">
           <div style={{ display: 'flex', alignItems: 'center', gap: '1.25rem' }}>
@@ -272,7 +307,7 @@ export default function HomePage() {
             >
               Explorá el archivo
             </h2>
-            <div style={{ flex: 1, height: '2px', background: 'var(--text)', opacity: 0.12 }} />
+            <div style={{ flex: 1, height: '2px', backgroundClip: 'white', opacity: 0.12 }} />
             <span
               style={{
                 fontSize: '0.6rem',
@@ -289,7 +324,9 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Secciones — solid color cards */}
+      {/* ═══════════════════════════════════════════════════
+          COLOR CARDS
+      ═══════════════════════════════════════════════════ */}
       <section style={{ padding: '0 1.5rem 5rem' }}>
         <div className="max-w-7xl mx-auto">
           <div
@@ -297,7 +334,7 @@ export default function HomePage() {
               display: 'grid',
               gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
               gap: '3px',
-              background: 'var(--text)',
+              backgroundClip: 'white',
             }}
           >
             {SECCIONES.map((s, i) => (
@@ -364,19 +401,18 @@ export default function HomePage() {
                 >
                   Ver más →
                 </span>
+                {/* Card corner daisy */}
                 <span
                   aria-hidden
                   style={{
                     position: 'absolute',
-                    bottom: '0.75rem',
-                    right: '1rem',
-                    fontSize: '2.25rem',
-                    opacity: 0.1,
+                    bottom: '0.6rem',
+                    right: '0.8rem',
+                    opacity: 0.14,
                     pointerEvents: 'none',
-                    lineHeight: 1,
                   }}
                 >
-                  ✿
+                  <Daisy size={40} rotate={20} opacity={1} />
                 </span>
               </Link>
             ))}
@@ -384,39 +420,52 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Quote */}
+      {/* ═══════════════════════════════════════════════════
+          QUOTE — celeste background (like the folleto feel)
+      ═══════════════════════════════════════════════════ */}
       <section
         style={{
-          background: 'var(--accent-pink)',
+          background: 'var(--accent-celeste)',
           padding: '6rem 1.5rem',
           position: 'relative',
           overflow: 'hidden',
         }}
       >
-        <span
+        {/* Large decorative daisy — top right, subtle */}
+        <div
           aria-hidden
           style={{
             position: 'absolute',
-            top: '-0.1em',
-            right: '4%',
-            fontFamily: 'var(--font-playfair), serif',
-            fontSize: 'clamp(8rem, 20vw, 16rem)',
-            fontWeight: 900,
-            color: 'rgba(255,255,255,0.25)',
-            lineHeight: 1,
-            userSelect: 'none',
+            top: '-3rem',
+            right: '2%',
             pointerEvents: 'none',
+            opacity: 0.22,
           }}
         >
-          ✿
-        </span>
+          <Daisy size={260} rotate={10} opacity={1} />
+        </div>
+        {/* Small one — bottom left */}
+        <div
+          aria-hidden
+          style={{
+            position: 'absolute',
+            bottom: '-2rem',
+            left: '5%',
+            pointerEvents: 'none',
+            opacity: 0.15,
+          }}
+        >
+          <Daisy size={130} rotate={-18} opacity={1} />
+        </div>
+
         <div className="max-w-3xl mx-auto" style={{ position: 'relative', zIndex: 10 }}>
           <div
             style={{
               width: '48px',
               height: '4px',
-              background: 'var(--accent)',
+              background: 'var(--bg-dark)',
               marginBottom: '2.5rem',
+              opacity: 0.45,
             }}
           />
           <blockquote
@@ -438,7 +487,7 @@ export default function HomePage() {
               fontSize: '0.66rem',
               letterSpacing: '0.18em',
               textTransform: 'uppercase',
-              color: 'rgba(35,35,35,0.55)',
+              color: 'rgba(53,87,107,0.6)',
             }}
           >
             — Fundación Las Margaritas de Rodolfo Bulacio

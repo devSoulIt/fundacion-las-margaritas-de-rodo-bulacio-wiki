@@ -89,7 +89,7 @@ export default async function WikiPageRoute(props: PageProps<'/wiki/[slug]'>) {
               style={{
                 fontSize: '1.05rem',
                 lineHeight: 1.75,
-                color: 'var(--text-faint)',
+                color: 'var(--white)',
                 maxWidth: '36rem',
                 marginBottom: '1.25rem',
               }}
@@ -102,8 +102,8 @@ export default async function WikiPageRoute(props: PageProps<'/wiki/[slug]'>) {
               fontSize: '0.65rem',
               letterSpacing: '0.14em',
               textTransform: 'uppercase',
-              color: 'var(--text-faint)',
-              opacity: 0.6,
+              color: 'var(--white)',
+              opacity: 0.8,
             }}
           >
             Actualizado: {formatDate(pagina.updated_at)}

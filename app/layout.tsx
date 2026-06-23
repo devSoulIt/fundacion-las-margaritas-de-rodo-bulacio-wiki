@@ -1,9 +1,9 @@
 import type { Metadata } from 'next'
-import { Playfair_Display, DM_Sans } from 'next/font/google'
+import { Fraunces, DM_Sans } from 'next/font/google'
 import './globals.css'
 import Navbar from '@/components/ui/Navbar'
 
-const playfair = Playfair_Display({
+const fraunces = Fraunces({
   subsets: ['latin'],
   weight: ['400', '500', '600', '700', '800', '900'],
   style: ['normal', 'italic'],
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="es" className={`${playfair.variable} ${dmSans.variable} h-full`}>
+    <html lang="es" className={`${fraunces.variable} ${dmSans.variable} h-full`}>
       <body className="min-h-full flex flex-col" style={{ background: 'var(--bg)', color: 'var(--text)', fontFamily: 'var(--font-dm-sans), sans-serif' }}>
         <Navbar />
         <main className="flex-1">{children}</main>
@@ -46,7 +46,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 Las Margaritas
               </span>
             </div>
-            <p style={{ fontSize: '0.72rem', letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--text-faint)', textAlign: 'center' }}>
+            <p style={{ fontSize: '0.72rem', letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--white)', textAlign: 'center' }}>
               © {new Date().getFullYear()} Fundación Las Margaritas de Rodolfo Bulacio — Mercado Cultural de Monteros
             </p>
           </div>

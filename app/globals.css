@@ -4,22 +4,22 @@
 :root {
   --bg: #ffffff;
   --bg-subtle: #f9f2f4;
-  --bg-dark: #35576b;
+  --bg-dark: #2278be;
   --text: #232323;
   --text-muted: #5c6a73;
   --text-faint: #8d9aa3;
   --accent: #f2c94c;
-  --accent-dark: #d4ab3a;
-  --accent-pink: #e8b6c3;
-  --accent-pink-dark: #d89bab;
-  --accent-green: #79b88a;
-  --accent-green-dark: #5f9e72;
+  --accent-dark: #E8BEC9;
+  --accent-pink: #E8BEC9;
+  --accent-pink-dark: #E8BEC9;
+  --accent-green: #3b79a8;
+  --accent-green-dark: #3b79a8;
   --accent-celeste: #9dd7e8;
-  --accent-celeste-dark: #76c1d8;
-  --accent-teal: #8fcfc9;
-  --accent-teal-dark: #6bb8b2;
+  --accent-celeste-dark: #B8DCE9;
+  --accent-teal: #B8DCE9;
+  --accent-teal-dark: #B8DCE9;
   --border: #d9e8ee;
-  --border-dark: #35576b;
+  --border-dark: #2278be;
   --white: #ffffff;
 }
 
@@ -46,15 +46,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg transform='translate(40 40)'%3E%3Cellipse rx='2.5' ry='8' fill='%23e8b6c3' opacity='0.7'/%3E%3Cellipse rx='2.5' ry='8' transform='rotate(45)' fill='%23e8b6c3' opacity='0.7'/%3E%3Cellipse rx='2.5' ry='8' transform='rotate(90)' fill='%23e8b6c3' opacity='0.7'/%3E%3Cellipse rx='2.5' ry='8' transform='rotate(135)' fill='%23e8b6c3' opacity='0.7'/%3E%3Ccircle r='3.5' fill='%23f2c94c' opacity='0.8'/%3E%3C/g%3E%3C/svg%3E");
-  pointer-events: none;
-  z-index: 0;
-  opacity: 0.14;
-}
 
 body:has(.admin-root)::before {
   display: none;
@@ -325,8 +316,8 @@ body:has(.admin-root)::before {
 .btn-primary-hero { transition: opacity 0.2s; }
 .btn-primary-hero:hover { opacity: 0.8; }
 
-.btn-outline-hero { transition: background 0.2s, color 0.2s; }
-.btn-outline-hero:hover { background: var(--text) !important; color: var(--accent) !important; }
+.btn-outline-hero { transition: background 0.2s, color 0.2s, border-color 0.2s; }
+.btn-outline-hero:hover { background: rgba(255,255,255,0.15) !important; border-color: #fff !important; color: #fff !important; }
 
 .btn-outline:hover { border-color: var(--accent); color: var(--text); background: var(--accent); }
 .btn-ghost-dark:hover { color: var(--accent); }
