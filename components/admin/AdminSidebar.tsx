@@ -48,8 +48,7 @@ export default function AdminSidebar() {
             gap: '0.4rem',
           }}
         >
-          <Image src="/logo.png" alt="Las Margaritas" width={22} height={22} style={{ objectFit: 'contain' }} />
-          Las Margaritas
+          <Image src="/logo.png" alt="Las Margaritas" width={140} height={50} style={{ objectFit: 'contain' }} />
         </p>
         <p
           style={{

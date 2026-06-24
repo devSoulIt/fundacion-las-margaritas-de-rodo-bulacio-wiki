@@ -57,7 +57,7 @@ export default async function GaleriaPage() {
               maxWidth: '34rem',
               fontSize: '0.9rem',
               lineHeight: 1.75,
-              color: 'var(--text-faint)',
+              color: '#fff',
             }}
           >
             Artistas que forman parte de la propuesta expositiva presentada por la Fundación Las Margaritas

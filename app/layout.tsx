@@ -37,18 +37,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <div style={{ height: '4px', background: 'var(--accent)' }} />
           <div className="max-w-6xl mx-auto px-6 py-10 flex flex-col md:flex-row items-center justify-between gap-4">
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
-              <Image src="/logo.png" alt="Las Margaritas" width={24} height={24} style={{ objectFit: 'contain' }} />
-              <span
-                style={{
-                  fontFamily: 'var(--font-playfair), serif',
-                  fontSize: '1.1rem',
-                  color: 'var(--white)',
-                  fontStyle: 'italic',
-                  fontWeight: 700,
-                }}
-              >
-                Las Margaritas
-              </span>
+              <Image src="/logo.png" alt="Las Margaritas" width={140} height={50} style={{ objectFit: 'contain' }} />
             </div>
             <p style={{ fontSize: '0.72rem', letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--white)', textAlign: 'center' }}>
               © {new Date().getFullYear()} Fundación Las Margaritas de Rodolfo Bulacio — Mercado Cultural de Monteros

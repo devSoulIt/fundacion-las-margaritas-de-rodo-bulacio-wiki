@@ -59,8 +59,7 @@ export default function Navbar() {
           onMouseEnter={e => (e.currentTarget.style.opacity = '0.7')}
           onMouseLeave={e => (e.currentTarget.style.opacity = '1')}
         >
-          <Image src="/logo.png" alt="Las Margaritas" width={28} height={28} style={{ objectFit: 'contain' }} />
-          Las Margaritas
+          <Image src="/logo.png" alt="Las Margaritas" width={140} height={50} style={{ objectFit: 'contain' }} />
         </Link>
 
         {/* Desktop nav */}
