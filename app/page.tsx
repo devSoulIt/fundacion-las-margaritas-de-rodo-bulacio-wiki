@@ -39,7 +39,7 @@ const SECCIONES = [
     text: '#232323',
     linkColor: '#35576b',
   },
-  {
+  /* {
     num: '05',
     titulo: 'Archivo y Memoria',
     href: '/wiki/archivo-y-memoria',
@@ -47,14 +47,14 @@ const SECCIONES = [
     bg: '#B9DCD5  ',
     text: '#ffffff',
     linkColor: '#f2c94c',
-  },
+  }, */
   {
-    num: '06',
+    num: '05',
     titulo: 'Contacto y Redes',
     href: '/contacto',
     descripcion: 'Encontrá la Sala en el Mercado Cultural de Monteros y seguinos en nuestras redes.',
-    bg: '#E8BEC9',
-    text: '#232323',
+    bg: '#B9DCD5',
+    text: '#262626',
     linkColor: '#35576b',
   },
 ]

@@ -215,6 +215,27 @@ export default async function ArtistaPage(props: PageProps<'/galeria/[slug]'>) {
           </section>
         )}
 
+        {/* Trayectoria — shown SECOND */}
+        {artista.trayectoria && (
+          <section>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '2rem' }}>
+              <span
+                style={{
+                  fontSize: '0.65rem',
+                  letterSpacing: '0.2em',
+                  textTransform: 'uppercase',
+                  color: 'var(--accent)',
+                  fontWeight: 500,
+                }}
+              >
+                Trayectoria
+              </span>
+              <div style={{ flex: 1, height: '1px', background: 'var(--border)' }} />
+            </div>
+            <WikiPage contenido={artista.trayectoria} />
+          </section>
+        )}
+
         {/* Biografía — shown SECOND */}
         {artista.biografia && (
           <section style={{ marginBottom: '4rem' }}>
@@ -236,25 +257,7 @@ export default async function ArtistaPage(props: PageProps<'/galeria/[slug]'>) {
           </section>
         )}
 
-        {artista.trayectoria && (
-          <section>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '2rem' }}>
-              <span
-                style={{
-                  fontSize: '0.65rem',
-                  letterSpacing: '0.2em',
-                  textTransform: 'uppercase',
-                  color: 'var(--accent)',
-                  fontWeight: 500,
-                }}
-              >
-                Trayectoria
-              </span>
-              <div style={{ flex: 1, height: '1px', background: 'var(--border)' }} />
-            </div>
-            <WikiPage contenido={artista.trayectoria} />
-          </section>
-        )}
+        
       </div>
     </article>
   )

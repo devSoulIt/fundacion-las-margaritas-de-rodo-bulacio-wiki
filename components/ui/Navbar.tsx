@@ -9,9 +9,9 @@ const NAV_ITEMS = [
   { label: 'Rodolfo Bulacio', href: '/wiki/rodolfo-bulacio' },
   { label: 'Fundación', href: '/wiki/fundacion-las-margaritas' },
   { label: 'Sala de Arte', href: '/wiki/sala-de-arte' },
-  { label: 'Galería', href: '/galeria' },
-  { label: 'Obras', href: '/obras' },
-  { label: 'Archivo', href: '/wiki/archivo-y-memoria' },
+  { label: 'Artistas', href: '/galeria' },
+  //{ label: 'Obras', href: '/obras' },
+  //{ label: 'Archivo', href: '/wiki/archivo-y-memoria' },
   { label: 'Contacto', href: '/contacto' },
 ]
 
