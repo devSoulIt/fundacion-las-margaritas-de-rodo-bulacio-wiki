@@ -52,6 +52,23 @@ create trigger artistas_updated_at
   before update on artistas
   for each row execute function update_updated_at();
 
+create table obras (
+  id          uuid primary key default gen_random_uuid(),
+  artista_id  uuid not null references artistas(id) on delete cascade,
+  titulo      text not null,
+  slug        text not null unique,
+  imagen      text,
+  descripcion text,
+  orden       integer default 0,
+  activa      boolean default true,
+  created_at  timestamptz default now(),
+  updated_at  timestamptz default now()
+);
+
+create trigger obras_updated_at
+  before update on obras
+  for each row execute function update_updated_at();
+
 create table media (
   id         uuid primary key default gen_random_uuid(),
   nombre     text not null,
@@ -126,6 +143,7 @@ insert into paginas (titulo, slug, seccion, publicada, resumen, contenido) value
 
 alter table paginas       enable row level security;
 alter table artistas      enable row level security;
+alter table obras         enable row level security;
 alter table media         enable row level security;
 alter table configuracion enable row level security;
 
@@ -145,6 +163,12 @@ create policy "paginas_admin_all"
 
 create policy "artistas_admin_all"
   on artistas for all using (auth.role() = 'authenticated');
+
+create policy "obras_public_read"
+  on obras for select using (activa = true);
+
+create policy "obras_admin_all"
+  on obras for all using (auth.role() = 'authenticated');
 
 create policy "media_admin_all"
   on media for all using (auth.role() = 'authenticated');

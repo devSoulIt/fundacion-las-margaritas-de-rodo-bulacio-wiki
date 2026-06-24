@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { usePathname, useRouter } from 'next/navigation'
 import { useState, useRef } from 'react'
 
@@ -9,6 +10,7 @@ const NAV_ITEMS = [
   { label: 'Fundación', href: '/wiki/fundacion-las-margaritas' },
   { label: 'Sala de Arte', href: '/wiki/sala-de-arte' },
   { label: 'Galería', href: '/galeria' },
+  { label: 'Obras', href: '/obras' },
   { label: 'Archivo', href: '/wiki/archivo-y-memoria' },
   { label: 'Contacto', href: '/contacto' },
 ]
@@ -57,7 +59,7 @@ export default function Navbar() {
           onMouseEnter={e => (e.currentTarget.style.opacity = '0.7')}
           onMouseLeave={e => (e.currentTarget.style.opacity = '1')}
         >
-          <span style={{ fontSize: '0.95rem', lineHeight: 1 }}>✿</span>
+          <Image src="/logo.png" alt="Las Margaritas" width={28} height={28} style={{ objectFit: 'contain' }} />
           Las Margaritas
         </Link>
 

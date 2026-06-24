@@ -28,6 +28,14 @@ export default async function ArtistaPage(props: PageProps<'/galeria/[slug]'>) {
 
   if (!artista) notFound()
 
+  const { data: obras } = await supabase
+    .from('obras')
+    .select('id, titulo, slug, imagen')
+    .eq('artista_id', artista.id)
+    .eq('activa', true)
+    .order('orden')
+    .order('titulo')
+
   return (
     <article>
       {/* Back link */}
@@ -112,6 +120,102 @@ export default async function ArtistaPage(props: PageProps<'/galeria/[slug]'>) {
 
       {/* Content */}
       <div style={{ maxWidth: '820px', margin: '0 auto', padding: '4rem 1.5rem' }}>
+        {/* Arte / Obras — shown FIRST */}
+        {obras && obras.length > 0 && (
+          <section style={{ marginBottom: '4rem' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '2rem' }}>
+              <span
+                style={{
+                  fontSize: '0.65rem',
+                  letterSpacing: '0.2em',
+                  textTransform: 'uppercase',
+                  color: 'var(--accent)',
+                  fontWeight: 500,
+                }}
+              >
+                Arte
+              </span>
+              <div style={{ flex: 1, height: '1px', background: 'var(--border)' }} />
+              <Link
+                href={`/galeria/${slug}/obras`}
+                style={{
+                  fontSize: '0.65rem',
+                  letterSpacing: '0.12em',
+                  textTransform: 'uppercase',
+                  color: 'var(--accent)',
+                  textDecoration: 'none',
+                  transition: 'opacity 0.2s',
+                }}
+              >
+                Ver todas →
+              </Link>
+            </div>
+
+            <div
+              style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(auto-fill, minmax(180px, 1fr))',
+                gap: '1rem',
+              }}
+            >
+              {obras.slice(0, 6).map((obra) => (
+                <Link
+                  key={obra.id}
+                  href={`/galeria/${slug}/obras`}
+                  style={{ textDecoration: 'none', display: 'block' }}
+                >
+                  <div
+                    style={{
+                      position: 'relative',
+                      aspectRatio: '1',
+                      background: 'var(--bg-subtle)',
+                      overflow: 'hidden',
+                    }}
+                  >
+                    {obra.imagen ? (
+                      <Image
+                        src={obra.imagen}
+                        alt={obra.titulo}
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 640px) 50vw, 180px"
+                        style={{ transition: 'transform 0.4s ease' }}
+                      />
+                    ) : (
+                      <div
+                        style={{
+                          width: '100%',
+                          height: '100%',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                        }}
+                      >
+                        <span style={{ fontFamily: 'var(--font-display), serif', fontSize: '2rem', color: 'var(--border)', fontStyle: 'italic' }}>
+                          {obra.titulo.charAt(0)}
+                        </span>
+                      </div>
+                    )}
+                  </div>
+                  <p
+                    style={{
+                      fontSize: '0.78rem',
+                      color: 'var(--text-muted)',
+                      marginTop: '0.5rem',
+                      overflow: 'hidden',
+                      textOverflow: 'ellipsis',
+                      whiteSpace: 'nowrap',
+                    }}
+                  >
+                    {obra.titulo}
+                  </p>
+                </Link>
+              ))}
+            </div>
+          </section>
+        )}
+
+        {/* Biografía — shown SECOND */}
         {artista.biografia && (
           <section style={{ marginBottom: '4rem' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '2rem' }}>

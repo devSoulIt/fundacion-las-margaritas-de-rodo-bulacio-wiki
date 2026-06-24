@@ -4,10 +4,11 @@ import { createClient } from '@/app/lib/supabase/server'
 export default async function AdminDashboard() {
   const supabase = await createClient()
 
-  const [{ count: totalPaginas }, { count: totalArtistas }, { count: totalMedia }] =
+  const [{ count: totalPaginas }, { count: totalArtistas }, { count: totalObras }, { count: totalMedia }] =
     await Promise.all([
       supabase.from('paginas').select('*', { count: 'exact', head: true }),
       supabase.from('artistas').select('*', { count: 'exact', head: true }),
+      supabase.from('obras').select('*', { count: 'exact', head: true }),
       supabase.from('media').select('*', { count: 'exact', head: true }),
     ])
 
@@ -29,10 +30,11 @@ export default async function AdminDashboard() {
       </div>
 
       {/* Stats */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1px', background: 'var(--a-border)', marginBottom: '2rem' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '1px', background: 'var(--a-border)', marginBottom: '2rem' }}>
         {[
           { label: 'Páginas', count: totalPaginas ?? 0, href: '/admin/paginas' },
           { label: 'Artistas', count: totalArtistas ?? 0, href: '/admin/artistas' },
+          { label: 'Obras', count: totalObras ?? 0, href: '/admin/obras' },
           { label: 'Archivos', count: totalMedia ?? 0, href: '/admin/media' },
         ].map((stat) => (
           <Link

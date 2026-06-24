@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { Fraunces, DM_Sans } from 'next/font/google'
+import Image from 'next/image'
 import './globals.css'
 import Navbar from '@/components/ui/Navbar'
 
@@ -21,6 +22,9 @@ export const metadata: Metadata = {
   title: 'Fundación Las Margaritas de Rodolfo Bulacio',
   description:
     'Espacio de preservación, investigación y difusión del legado artístico de Rodolfo Bulacio.',
+  icons: {
+    icon: '/favicon-32x32.png',
+  },
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -33,7 +37,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <div style={{ height: '4px', background: 'var(--accent)' }} />
           <div className="max-w-6xl mx-auto px-6 py-10 flex flex-col md:flex-row items-center justify-between gap-4">
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
-              <span style={{ fontSize: '1.1rem', color: 'var(--accent)', lineHeight: 1 }}>✿</span>
+              <Image src="/logo.png" alt="Las Margaritas" width={24} height={24} style={{ objectFit: 'contain' }} />
               <span
                 style={{
                   fontFamily: 'var(--font-playfair), serif',

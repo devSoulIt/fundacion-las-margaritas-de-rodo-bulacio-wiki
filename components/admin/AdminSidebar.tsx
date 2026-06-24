@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import { signOut } from '@/app/actions/auth'
 
@@ -8,6 +9,7 @@ const LINKS = [
   { label: 'Dashboard', href: '/admin', icon: '▪' },
   { label: 'Páginas', href: '/admin/paginas', icon: '▪' },
   { label: 'Artistas', href: '/admin/artistas', icon: '▪' },
+  { label: 'Obras', href: '/admin/obras', icon: '▪' },
   { label: 'Media', href: '/admin/media', icon: '▪' },
   { label: 'Configuración', href: '/admin/configuracion', icon: '▪' },
 ]
@@ -46,7 +48,7 @@ export default function AdminSidebar() {
             gap: '0.4rem',
           }}
         >
-          <span style={{ color: 'var(--a-accent)', fontSize: '0.9rem' }}>✿</span>
+          <Image src="/logo.png" alt="Las Margaritas" width={22} height={22} style={{ objectFit: 'contain' }} />
           Las Margaritas
         </p>
         <p

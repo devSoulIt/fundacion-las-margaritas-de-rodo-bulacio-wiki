@@ -15,7 +15,10 @@
       "Skill(frontend-design)",
       "Bash(npm run *)",
       "PowerShell(Get-ChildItem -Path \"C:\\\\Users\\\\Lautaro\\\\Documents\\\\Programacion\\\\devsoul\\\\rodo-bulacio-wiki\" -Recurse -Exclude \"node_modules\" | Where-Object { $_.FullName -notmatch \"node_modules\" } | Select-Object FullName)",
-      "PowerShell(Get-ChildItem -Path \"C:\\\\Users\\\\Lautaro\\\\Documents\\\\Programacion\\\\devsoul\\\\rodo-bulacio-wiki\" | Where-Object { $_.Name -ne \"node_modules\" } | Select-Object Name, PSIsContainer)"
+      "PowerShell(Get-ChildItem -Path \"C:\\\\Users\\\\Lautaro\\\\Documents\\\\Programacion\\\\devsoul\\\\rodo-bulacio-wiki\" | Where-Object { $_.Name -ne \"node_modules\" } | Select-Object Name, PSIsContainer)",
+      "Bash(ls:*)",
+      "Bash(npx --yes next build --no-turbopack)",
+      "Bash(npx --yes next build)"
     ]
   }
 }
