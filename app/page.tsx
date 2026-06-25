@@ -24,7 +24,7 @@ const SECCIONES = [
   {
     num: '03',
     titulo: 'Sala de Arte Contemporáneo',
-    href: '/wiki/sala-de-arte',
+    href: '/wiki/sala-de-arte-contemporaneo-rodolfo-bulacio',
     descripcion: 'Espacio en el Mercado Cultural de Monteros que alberga la muestra permanente de Rodolfo Bulacio.',
     bg: '#f2c94c',
     text: '#232323',
