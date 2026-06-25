@@ -19,7 +19,7 @@ interface Pagina {
 const SECCIONES = [
   { value: 'rodolfo-bulacio', label: 'Rodolfo Bulacio' },
   { value: 'fundacion', label: 'Fundación' },
-  { value: 'sala-de-arte', label: 'Sala de Arte' },
+  { value: 'sala-de-arte-contemporaneo-rodolfo-bulacio', label: 'Sala de Arte' },
   { value: 'archivo-y-memoria', label: 'Archivo y Memoria' },
   { value: '', label: 'Sin sección' },
 ]

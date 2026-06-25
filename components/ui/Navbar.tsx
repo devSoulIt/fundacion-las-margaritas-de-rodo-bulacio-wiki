@@ -8,7 +8,7 @@ import { useState, useRef } from 'react'
 const NAV_ITEMS = [
   { label: 'Rodolfo Bulacio', href: '/wiki/rodolfo-bulacio' },
   { label: 'Fundación', href: '/wiki/fundacion-las-margaritas' },
-  { label: 'Sala de Arte', href: '/wiki/sala-de-arte' },
+  { label: 'Sala de Arte', href: '/wiki/sala-de-arte-contemporaneo-rodolfo-bulacio' },
   { label: 'Artistas', href: '/galeria' },
   //{ label: 'Obras', href: '/obras' },
   //{ label: 'Archivo', href: '/wiki/archivo-y-memoria' },
